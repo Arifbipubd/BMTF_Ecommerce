@@ -1,3 +1,5 @@
+/** @format */
+
 import { useEffect, useState } from "react";
 import settings from "../../../utils/settings";
 import SectionStyleFour from "../Helpers/SectionStyleFour";
@@ -39,10 +41,10 @@ export default function Home({ homepageData }) {
   }, [isMultivendor]);
   return (
     <>
-      <Layout childrenClasses="pt-0">
+      <Layout childrenClasses='pt-0'>
         <Ads />
         {homepage && homepage.sliders.length > 0 && (
-          <Banner sliders={homepage.sliders} className="banner-wrapper" />
+          <Banner sliders={homepage.sliders} className='banner-wrapper' />
         )}
         <CategorySection
           categories={homepage.homepage_categories}
@@ -50,14 +52,14 @@ export default function Home({ homepageData }) {
           adsTwo={homepage.banner_two}
           sectionTitle={sectionTitles && sectionTitles.My_Market_Category}
         />
-        {homepage && (
+        {/* {homepage && (
           <BrandSection
             brands={homepage.brands.length > 0 ? homepage.brands : []}
-            sectionTitle="Shop by Brand"
-            className="brand-section-wrapper md:mb-[60px] mb-[30px]"
+            sectionTitle='Shop by Brand'
+            className='brand-section-wrapper md:mb-[60px] mb-[30px]'
           />
-        )}
-        <div className="md:py-[60px] py-[30px] bg-qpurplelow/10">
+        )} */}
+        <div className='md:py-[60px] py-[30px] bg-qpurplelow/10'>
           {homepage && (
             <SectionStyleThree
               products={
@@ -72,20 +74,20 @@ export default function Home({ homepageData }) {
               }
               sectionTitle={sectionTitles && sectionTitles.New_Arrivals}
               seeMoreUrl={`/products?highlight=new_arrival`}
-              className="new-products"
+              className='new-products'
             />
           )}
         </div>
-        {homepage && (
+        {/* {homepage && (
           <CampaignCountDown
-            className="md:mb-[60px] mb-[30px]"
+            className='md:mb-[60px] mb-[30px]'
             datas={homepage.flashSale}
             products={homepage.flashsale_products.slice(0, 4)}
           />
-        )}
+        )} */}
         {homepage && (
           <ViewMoreTitle
-            className="top-selling-product md:mb-[60px] mb-[30px]"
+            className='top-selling-product md:mb-[60px] my-[30px]'
             seeMoreUrl={`/products?highlight=top_product`}
             categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
           >
@@ -98,8 +100,8 @@ export default function Home({ homepageData }) {
             />
           </ViewMoreTitle>
         )}
-        {homepage && isMultivendor === 1 && (
-          <div className="container-x mx-auto ">
+        {/* {homepage && isMultivendor === 1 && (
+          <div className='container-x mx-auto '>
             <div
               style={{
                 background:
@@ -107,10 +109,10 @@ export default function Home({ homepageData }) {
               }}
               className={`md:py-[60px] py-[30px]  w-full rounded-xl overflow-hidden md:mb-[60px] mb-[30px]`}
             >
-              <div className="w-full h-full flex justify-center items-center md:px-[30px]">
+              <div className='w-full h-full flex justify-center items-center md:px-[30px]'>
                 <ViewMoreTitle
-                  className="best-sallers-section"
-                  seeMoreUrl="/sellers"
+                  className='best-sallers-section'
+                  seeMoreUrl='/sellers'
                   categoryTitle={sectionTitles && sectionTitles.Best_Seller}
                 >
                   <BestSellers
@@ -122,9 +124,9 @@ export default function Home({ homepageData }) {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
-        {homepage && (
+        {/* {homepage && (
           <SectionStyleOne
             products={homepage.popularCategoryProducts}
             categories={homepage.popularCategories}
@@ -134,14 +136,24 @@ export default function Home({ homepageData }) {
             }
             sectionTitle={sectionTitles && sectionTitles.Popular_Category}
             seeMoreUrl={`/products?highlight=popular_category`}
-            className="category-products"
+            className='category-products'
           />
-        )}
-        <div className="bg-qpurplelow/10">
+        )} */}
+        {/* <div className='bg-qpurplelow/10'>
           {homepage && (
             <TwoColumnAds
-              bannerOne={homepage.banner_three && parseInt(homepage.banner_three.status)===1?homepage.banner_three:null }
-              bannerTwo={homepage.banner_four && parseInt(homepage.banner_four.status)===1?homepage.banner_four:null}
+              bannerOne={
+                homepage.banner_three &&
+                parseInt(homepage.banner_three.status) === 1
+                  ? homepage.banner_three
+                  : null
+              }
+              bannerTwo={
+                homepage.banner_four &&
+                parseInt(homepage.banner_four.status) === 1
+                  ? homepage.banner_four
+                  : null
+              }
             />
           )}
 
@@ -152,10 +164,10 @@ export default function Home({ homepageData }) {
               }
               sectionTitle={sectionTitles && sectionTitles.Best_Products}
               seeMoreUrl={`/products?highlight=best_product`}
-              className="category-products md:pt-[60px] pt-[30px] pb-[114px]"
+              className='category-products md:pt-[60px] pt-[30px] pb-[114px]'
             />
           )}
-        </div>
+        </div> */}
       </Layout>
     </>
   );

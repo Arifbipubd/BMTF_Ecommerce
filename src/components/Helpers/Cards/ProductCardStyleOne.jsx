@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -22,10 +24,10 @@ import LoginContext from "../../Contexts/LoginContexts";
 
 const Redirect = ({ message, linkTxt }) => {
   return (
-    <div className="flex space-x-2 items-center">
-      <span className="text-sm text-qgray">{message && message}</span>
-      <Link href="/cart">
-        <span className="text-xs border-b border-blue-600 text-blue-600 mr-2 cursor-pointer">
+    <div className='flex space-x-2 items-center'>
+      <span className='text-sm text-qgray'>{message && message}</span>
+      <Link href='/cart'>
+        <span className='text-xs border-b border-blue-600 text-blue-600 mr-2 cursor-pointer'>
           {linkTxt && linkTxt}
         </span>
       </Link>
@@ -261,26 +263,26 @@ export default function ProductCardStyleOne({ datas }) {
   };
   return (
     <div
-      className="product-card-one w-full h-[445px] transition-all duration-300 ease-in-out bg-white relative group border border-transparent hover:border-qpurple overflow-hidden rounded-lg"
+      className='product-card-one w-full h-[445px] transition-all duration-300 ease-in-out bg-white relative group border border-transparent hover:border-qpurple overflow-hidden rounded-lg'
       style={{ boxShadow: "0px 15px 64px 0px rgba(0, 0, 0, 0.05)" }}
     >
-      <div className="flex flex-col h-full justify-between">
+      <div className='flex flex-col h-full justify-between'>
         <div>
-          <div className="product-card-img w-full h-[313px]">
-            <div className="w-full h-full relative  flex justify-center items-center transition-all duration-700 ease-in-out transform group-hover:-scale-x-[1] scale-x-100">
+          <div className='product-card-img w-full h-[313px]'>
+            <div className='w-full h-full relative  flex justify-center items-center transition-all duration-700 ease-in-out transform group-hover:-scale-x-[1] scale-x-100'>
               <Image
-                layout="fill"
-                objectFit="scale-down"
+                layout='fill'
+                objectFit='scale-down'
                 src={`${imgSrc ? imgSrc : "/assets/images/spinner.gif"}`}
-                alt=""
+                alt=''
                 onLoadingComplete={() => loadImg(datas.image)}
-                className="w-full h-full object-contain"
+                className='w-full h-full object-contain'
               />
             </div>
           </div>
-          <div className="product-card-details relative pt-5 pl-[30px]">
-            <div className="flex justify-start  mb-1.5">
-              <div className="reviews flex space-x-[1px]">
+          <div className='product-card-details relative pt-5 pl-[30px]'>
+            <div className='flex justify-start  mb-1.5'>
+              <div className='reviews flex space-x-[1px]'>
                 {Array.from(Array(datas.review), () => (
                   <span key={datas.review + Math.random()}>
                     <Star />
@@ -291,7 +293,7 @@ export default function ProductCardStyleOne({ datas }) {
                     {Array.from(Array(5 - datas.review), () => (
                       <span
                         key={datas.review + Math.random()}
-                        className="text-qgray"
+                        className='text-qgray'
                       >
                         <Star defaultValue={false} />
                       </span>
@@ -308,13 +310,13 @@ export default function ProductCardStyleOne({ datas }) {
               }}
               passHref
             >
-              <a rel="noopener noreferrer">
-                <h1 className="title mb-1.5 text-[18px] font-600 text-qblack leading-[30px] line-clamp-1 hover:text-qpurple cursor-pointer text-start">
+              <a rel='noopener noreferrer'>
+                <h1 className='title mb-1.5 text-[18px] font-600 text-qblack leading-[30px] line-clamp-1 hover:text-qpurple cursor-pointer text-start'>
                   {datas.title}
                 </h1>
               </a>
             </Link>
-            <p className="price text-start">
+            <p className='price text-start'>
               <span
                 suppressHydrationWarning
                 className={`main-price  font-500 text-[16px] ${
@@ -346,7 +348,7 @@ export default function ProductCardStyleOne({ datas }) {
               {offerPrice && (
                 <span
                   suppressHydrationWarning
-                  className="offer-price text-qpurple font-500 text-[16px] ml-2"
+                  className='offer-price text-qpurple font-500 text-[16px] ml-2'
                 >
                   <CheckProductIsExistsInFlashSale
                     id={datas.id}
@@ -358,32 +360,32 @@ export default function ProductCardStyleOne({ datas }) {
           </div>
         </div>
         {/* add to card button */}
-        <div className="">
+        <div className=''>
           <div
             style={{ borderRadius: "30px 0px 0" }}
             onClick={() => addToCart(datas.id)}
-            className="w-[135px] h-[48px] pl-6 pt-3 cursor-pointer  bg-qpurplelow/10 group-hover:bg-qpurple transition-all duration-300 absolute -bottom-1 -right-1 ease-in-out"
+            className='w-[135px] h-[48px] pl-6 pt-3 cursor-pointer  bg-qpurplelow/10 group-hover:bg-qpurple transition-all duration-300 absolute -bottom-1 -right-1 ease-in-out'
           >
-            <div className="w-full h-full space-x-3 text-qpurple group-hover:text-white">
-              <span className="text-base font-semibold">Add To Cart</span>
+            <div className='w-full h-full space-x-3 text-qpurple group-hover:text-white'>
+              <span className='text-base font-semibold'>Add To Cart</span>
             </div>
           </div>
         </div>
       </div>
       {/* quick-access-btns */}
-      <div className="quick-access-btn">
+      <div className='quick-access-btn'>
         <button
-          className=" absolute left-[77px] top-[243px] transform scale-0 group-hover:scale-100  transition-all ease-in-out"
+          className=' absolute left-[47%] top-[243px] transform scale-0 group-hover:scale-100  transition-all ease-in-out'
           onClick={() => quickViewHandler(datas.slug)}
-          type="button"
+          type='button'
         >
-          <span className="w-10 h-10 block overflow-hidden  text-qblack hover:text-white  transition-all duration-300 ease-in-out hover:bg-qpurple bg-white  rounded-full">
-            <span className=" w-full h-full bg-qpurplelow/10 flex justify-center items-center">
-              <QuickViewIco className="fill-current" />
+          <span className='w-10 h-10 block overflow-hidden  text-qblack hover:text-white  transition-all duration-300 ease-in-out hover:bg-qpurple bg-white  rounded-full'>
+            <span className=' w-full h-full bg-qpurplelow/10 flex justify-center items-center'>
+              <QuickViewIco className='fill-current' />
             </span>
           </span>
         </button>
-        {!arWishlist ? (
+        {/* {!arWishlist ? (
           <button
             className=" absolute left-[134px] top-[243px] transform scale-0 group-hover:scale-100  transition-all duration-300 ease-in-out"
             type="button"
@@ -407,32 +409,32 @@ export default function ProductCardStyleOne({ datas }) {
               </span>
             </span>
           </button>
-        )}
+        )} */}
 
-        <button
-          className=" absolute left-[195px] top-[243px] transform scale-0 group-hover:scale-100  transition-all duration-500 ease-in-out"
-          type="button"
+        {/* <button
+          className=' absolute left-[195px] top-[243px] transform scale-0 group-hover:scale-100  transition-all duration-500 ease-in-out'
+          type='button'
           onClick={() => productCompare(datas.id)}
         >
-          <span className="w-10 h-10 block  text-qblack hover:text-white transition-all overflow-hidden duration-300 ease-in-out items-center bg-white rounded-full">
-            <span className="w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10 ">
+          <span className='w-10 h-10 block  text-qblack hover:text-white transition-all overflow-hidden duration-300 ease-in-out items-center bg-white rounded-full'>
+            <span className='w-full h-full flex justify-center items-center hover:bg-qpurple bg-qpurplelow/10 '>
               <Compair />
             </span>
           </span>
-        </button>
+        </button> */}
       </div>
       {quickViewModal && quickViewData && (
-        <div className="quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center ">
+        <div className='quicke-view-wrapper w-full h-full flex fixed left-0 top-0 justify-center z-50 items-center '>
           <div
             onClick={() => setQuickView(!quickViewModal)}
-            className="w-full h-full fixed left-0 right-0 bg-black  bg-opacity-25"
+            className='w-full h-full fixed left-0 right-0 bg-black  bg-opacity-25'
           ></div>
           <div
-            data-aos="fade-up"
-            className="md:mx-10 xl:mt-[100px] rounded w-full bg-white relative lg:py-[40px] pt-[80px] pb-[40px] sm:px-[38px] px-3 relative md:mt-12 h-full overflow-y-scroll xl:overflow-hidden  xl:mt-0"
+            data-aos='fade-up'
+            className='md:mx-10 xl:mt-[100px] rounded w-full bg-white relative lg:py-[40px] pt-[80px] pb-[40px] sm:px-[38px] px-3 relative md:mt-12 h-full overflow-y-scroll xl:overflow-hidden  xl:mt-0'
             style={{ zIndex: "999" }}
           >
-            <div className="w-full h-full overflow-y-scroll overflow-style-none">
+            <div className='w-full h-full overflow-y-scroll overflow-style-none'>
               <ProductView
                 images={
                   quickViewData.gellery.length > 0 ? quickViewData.gellery : []
@@ -443,22 +445,22 @@ export default function ProductCardStyleOne({ datas }) {
 
             <button
               onClick={() => setQuickView(!quickViewModal)}
-              type="button"
-              className="absolute right-3 top-3"
+              type='button'
+              className='absolute right-3 top-3'
             >
-              <span className="text-red-500 w-12 h-12 flex justify-center items-center rounded border border-qred">
+              <span className='text-red-500 w-12 h-12 flex justify-center items-center rounded border border-qred'>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-10 h-10"
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='1.5'
+                  stroke='currentColor'
+                  className='w-10 h-10'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M6 18L18 6M6 6l12 12'
                   ></path>
                 </svg>
               </span>
