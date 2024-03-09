@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run pload",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
     "pload": "npm install --force"
