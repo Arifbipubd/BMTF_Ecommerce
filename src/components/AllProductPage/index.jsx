@@ -626,11 +626,11 @@ export default function AllProductPage({ response, sellerInfo }) {
                         <p className='font-400 text-[14px] text-qgray capitalize'>
                           <span className=''>
                             {" "}
-                            {langCntnt && langCntnt.Showing}
+                            {/* {langCntnt && langCntnt.Showing} */}
                           </span>{" "}
-                          1–
-                          {response.data.products.data.length}{" "}
-                          {langCntnt && langCntnt.of}{" "}
+                          {/* 1– */}
+                          {/* {response.data.products.data.length}{" "} */}
+                          {/* {langCntnt && langCntnt.of}{" "} */}
                           {response.data.products.total}{" "}
                           {langCntnt && langCntnt.results}
                         </p>
@@ -751,11 +751,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                         <DataIteration
                           datas={products && products}
                           startLength={6}
-                          endLength={
-                            products && products.length >= 14
-                              ? 14
-                              : products && products.length
-                          }
+                          endLength={products && products.length}
                         >
                           {({ datas }) => (
                             <div data-aos='fade-up' key={datas.id}>
@@ -770,11 +766,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                         <DataIteration
                           datas={products && products}
                           startLength={6}
-                          endLength={
-                            products && products.length >= 14
-                              ? 14
-                              : products && products.length
-                          }
+                          endLength={products && products.length}
                         >
                           {({ datas }) => (
                             <div data-aos='fade-up' key={datas.id}>
