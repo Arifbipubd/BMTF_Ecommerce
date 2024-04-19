@@ -93,41 +93,45 @@ export default function Footer({ settings, contact }) {
         <div className='lg:flex justify-between lg:mb-[80px] mb-[40px]'>
           <div className='flex-1 lg:flex  ml-0 w-full mb-10 lg:mb-0'>
             <div className='w-[350px]'>
-              <div className=''>
+              <div className='mb-2'>
                 <Link href='/' passHref>
                   <a>
-                    {settings && (
-                      <Image
-                        width='153'
-                        height='44'
-                        objectFit='scale-down'
-                        src={`${
-                          process.env.NEXT_PUBLIC_BASE_URL + settings.logo
-                        }`}
-                        alt='logo'
-                      />
-                    )}
+                    {/* {settings && ( */}
+                    <Image
+                      width='153'
+                      height='44'
+                      objectFit='scale-down'
+                      src='/assets/logo-light.svg'
+                      alt='logo'
+                    />
+                    {/* )} */}
                   </a>
                 </Link>
               </div>
-              {thirdCol && (
-                <div>
-                  <ul className='flex flex-col space-y-5 '>
-                    {thirdCol.col_links.length > 0 &&
-                      thirdCol.col_links.map((item, i) => (
-                        <li key={i}>
-                          <Link href={item.link} passHref>
-                            <a rel='noopener noreferrer'>
-                              <span className='text-[#C8C8C8] text-[15px] hover:text-qpurple hover:underline cursor-pointer'>
-                                {item.title}
-                              </span>
-                            </a>
-                          </Link>
-                        </li>
-                      ))}
-                  </ul>
+              {/* {thirdCol && ( */}
+              <div>
+                <div className='flex flex-col space-y-5 '>
+                  {/* {thirdCol.col_links.length > 0 &&
+                    thirdCol.col_links.map((item, i) => (
+                      <li key={i}>
+                        <Link href={item.link} passHref>
+                          <a rel='noopener noreferrer'>
+                            <span className='text-[#C8C8C8] text-[15px] hover:text-qpurple hover:underline cursor-pointer'>
+                              {item.title}
+                            </span>
+                          </a>
+                        </Link>
+                      </li>
+                    ))} */}
+                  <p className=' text-white pr-5 '>
+                    Bangladesh Machine Tools Factory Limited (BMTF), under the
+                    management of the Bangladesh Army, spearheads diverse
+                    enterprises across 156.47 acres, contributing significantly
+                    to the national economy and industrial growth.
+                  </p>
                 </div>
-              )}
+              </div>
+              {/* )} */}
             </div>
             <div className='lg:w-[260px] w-full mb-10 lg:mb-0 mt-16 lg:mt-0'>
               {firstCol && (

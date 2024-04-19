@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import Faq from "../src/components/Faq/index";
 import PageHead from "../src/components/Helpers/PageHead";
@@ -5,7 +7,7 @@ import PageHead from "../src/components/Helpers/PageHead";
 export default function faqPage({ data }) {
   return (
     <>
-      <PageHead title="Shopus | FAQ" />
+      <PageHead title='BMTF Shop | FAQ' />
       <Faq datas={data} />
     </>
   );
