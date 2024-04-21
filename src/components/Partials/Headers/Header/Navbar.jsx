@@ -293,7 +293,7 @@ export default function Navbar({ className }) {
                   <Link href='/blogs' passHref>
                     <a rel='noopener noreferrer'>
                       <span className='flex items-center text-sm font-600 cursor-pointer capitalize'>
-                        <span>Resources</span>
+                        <span>Blogs</span>
                       </span>
                     </a>
                   </Link>

@@ -101,7 +101,7 @@ export default function Footer({ settings, contact }) {
                       width='153'
                       height='44'
                       objectFit='scale-down'
-                      src='/assets/logo-light.svg'
+                      src='/assets/logo-light.png'
                       alt='logo'
                     />
                     {/* )} */}
