@@ -263,7 +263,7 @@ export default function ProductCardStyleOne({ datas }) {
   };
   return (
     <div
-      className='product-card-one w-full h-[445px] transition-all duration-300 ease-in-out bg-white relative group border border-transparent hover:border-qpurple overflow-hidden rounded-lg'
+      className='product-card-one w-full h-[465px] transition-all duration-300 ease-in-out bg-white relative group border border-transparent hover:border-qpurple overflow-hidden rounded-lg'
       style={{ boxShadow: "0px 15px 64px 0px rgba(0, 0, 0, 0.05)" }}
     >
       <div className='flex flex-col h-full justify-between'>
@@ -362,9 +362,13 @@ export default function ProductCardStyleOne({ datas }) {
         {/* add to card button */}
         <div className=''>
           <div
-            style={{ borderRadius: "30px 0px 0" }}
+            style={{
+              borderRadius: "0px 0px 0",
+              textAlign: "center",
+              marginTop: "3px",
+            }}
             onClick={() => addToCart(datas.id)}
-            className='w-[135px] h-[48px] pl-6 pt-3 cursor-pointer  bg-qpurplelow/10 group-hover:bg-qpurple transition-all duration-300 absolute -bottom-1 -right-1 ease-in-out'
+            className='w-full h-[48px] pl-6 pt-3 cursor-pointer  bg-qpurplelow/10 group-hover:bg-qpurple transition-all duration-300  ease-in-out'
           >
             <div className='w-full h-full space-x-3 text-qpurple group-hover:text-white'>
               <span className='text-base font-semibold'>Add To Cart</span>

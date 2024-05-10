@@ -83,13 +83,13 @@ export default function Footer({ settings, contact }) {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className='footer-section-wrapper bg-white print:hidden pl-3.5 sm:pl-0 relative mt-24'
+      className='footer-section-wrapper bg-white print:hidden pl-3.5 sm:pl-0 relative mt-8'
     >
       <div className='bg-[#232532] bg-opacity-[0.96] w-full h-full absolute left-0 top-0 z-10'></div>
       <div className='container-x block mx-auto  pt-[370px] lg:pt-[96px] relative z-20'>
-        <div className='absolute left-0 -top-[55px] w-full'>
+        {/* <div className='absolute left-0 -top-[55px] w-full'>
           {services && <Services services={services} />}
-        </div>
+        </div> */}
         <div className='lg:flex justify-between lg:mb-[80px] mb-[40px]'>
           <div className='flex-1 lg:flex  ml-0 w-full mb-10 lg:mb-0'>
             <div className='w-[350px]'>

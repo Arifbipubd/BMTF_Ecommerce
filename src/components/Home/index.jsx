@@ -1,7 +1,10 @@
 /** @format */
 
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import settings from "../../../utils/settings";
+import Services from "../Home/Services";
+import FontAwesomeCom from "../Helpers/icons/FontAwesomeCom";
 import SectionStyleFour from "../Helpers/SectionStyleFour";
 import SectionStyleOne from "../Helpers/SectionStyleOne";
 import SectionStyleThree from "../Helpers/SectionStyleThree";
@@ -16,6 +19,7 @@ import TwoColumnAds from "./ProductAds/TwoColumnAds";
 import BestSellers from "./BestSellers";
 import Ads from "./Ads";
 export default function Home({ homepageData }) {
+  const categoryImage = "/assets/images/banner images bmtf ecommerce/top.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
   const [sectionTitles, setSectionTitles] = useState(null);
@@ -34,11 +38,20 @@ export default function Home({ homepageData }) {
 
   const { enable_multivendor } = settings();
   const [isMultivendor, setIsMultivendor] = useState(false);
+  const { websiteSetup } = useSelector((state) => state.websiteSetup);
+  const [services, setServices] = useState(null);
   useEffect(() => {
     if (!isMultivendor) {
       setIsMultivendor(enable_multivendor && parseInt(enable_multivendor));
     }
   }, [isMultivendor]);
+  useEffect(() => {
+    if (!services) {
+      setServices(
+        websiteSetup && websiteSetup.payload && websiteSetup.payload.services
+      );
+    }
+  });
   return (
     <>
       <Layout childrenClasses='pt-0'>
@@ -89,6 +102,7 @@ export default function Home({ homepageData }) {
           <ViewMoreTitle
             className='top-selling-product md:mb-[60px] my-[30px]'
             seeMoreUrl={`/products?highlight=top_product`}
+            categoryImg={categoryImage}
             categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
           >
             <SectionStyleTwo
@@ -168,6 +182,8 @@ export default function Home({ homepageData }) {
             />
           )}
         </div> */}
+
+        <div>{services && <Services services={services} />}</div>
       </Layout>
     </>
   );

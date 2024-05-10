@@ -253,9 +253,9 @@ export default function Middlebar({ className, settings }) {
                       <span className='cursor-pointer text-[#6E6D79]'>
                         <ThinBag className='fill-current' />
                       </span>
-                      <span className='text-base text-qgray font-medium'>
+                      {/* <span className='text-base text-qgray font-medium'>
                         {langCntnt && langCntnt.Cart}
-                      </span>
+                      </span> */}
                     </a>
                   </Link>
                   <span className='w-[18px] h-[18px] rounded-full  absolute -top-1.5 left-4 flex justify-center items-center text-[9px]'>
