@@ -1,1 +1,0 @@
-{"c":["pages/index","webpack"],"r":["pages/login"],"m":["./Middleware/isAuth.js","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2Fhome%2Finneed_cloud%2FProjects%2FBMTF_Ecommerce%2Fpages%2Flogin.js&page=%2Flogin!","./pages/login.js","./src/components/Auth/Login/LoginLayout.jsx","./src/components/Auth/Login/index.jsx"]}

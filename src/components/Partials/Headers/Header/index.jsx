@@ -67,7 +67,7 @@ export default function Header({ drawerAction, settings, contact }) {
           </div>
         </div>
       </div>
-      <Navbar className='quomodo-shop-nav-bar lg:block hidden' />
+      {/* <Navbar className='quomodo-shop-nav-bar lg:block hidden' /> */}
     </header>
   );
 }

@@ -527,7 +527,7 @@ h6 span {
 }
 
 .nav-widget-wrapper .nav .nav-wrapper li {
-  @apply text-white;
+  @apply text-black;
 }
 
 .quomodo-shop-nav-bar.nav-widget-wrapper {
