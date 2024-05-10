@@ -1,8 +1,11 @@
+/** @format */
+
 import ProductCardStyleOne from "./Cards/ProductCardStyleOne";
 import DataIteration from "./DataIteration";
 import ViewMoreTitle from "./ViewMoreTitle";
 
 export default function SectionStyleThree({
+  categoryImage = "/assets/images/banner images bmtf ecommerce/new.jpg",
   className,
   sectionTitle,
   seeMoreUrl,
@@ -23,12 +26,16 @@ export default function SectionStyleThree({
   });
   return (
     <div className={`section-style-one ${className || ""}`}>
-      <ViewMoreTitle categoryTitle={sectionTitle} seeMoreUrl={seeMoreUrl}>
-        <div className="products-section w-full">
-          <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
+      <ViewMoreTitle
+        categoryImg={categoryImage}
+        categoryTitle={sectionTitle}
+        seeMoreUrl={seeMoreUrl}
+      >
+        <div className='products-section w-full'>
+          <div className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5'>
             <DataIteration datas={rs} startLength={0} endLength={rs.length}>
               {({ datas }) => (
-                <div data-aos="fade-up" key={datas.id} className="item">
+                <div data-aos='fade-up' key={datas.id} className='item'>
                   <ProductCardStyleOne datas={datas} />
                 </div>
               )}

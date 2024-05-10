@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -55,7 +57,7 @@ export default function Layout({ children, childrenClasses }) {
       <DefaultUser.Provider
         value={{ user: defaultUser, handler: updateDefaultUserDate }}
       >
-        <div className="w-full overflow-x-hidden">
+        <div className='w-full overflow-x-hidden'>
           <Header
             contact={contact && contact}
             settings={settings}

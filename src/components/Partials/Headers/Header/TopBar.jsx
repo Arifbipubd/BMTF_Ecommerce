@@ -1,3 +1,5 @@
+/** @format */
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import languageModel from "../../../../../utils/languageModel";
@@ -16,23 +18,23 @@ export default function TopBar({ className, contact }) {
           className || ""
         }`}
       >
-        <div className="container-x mx-auto h-full">
-          <div className="flex justify-between items-center h-full">
-            <div className="topbar-nav">
-              <ul className="flex space-x-6">
+        <div className='container-x mx-auto h-full'>
+          <div className='flex justify-between items-center h-full'>
+            <div className='topbar-nav'>
+              <ul className='flex space-x-6'>
                 <li>
                   {auth ? (
-                    <Link href="/profile#dashboard" passHref>
-                      <a rel="noopener noreferrer">
-                        <span className="text-sm leading-6 text-qblack font-500 cursor-pointer">
+                    <Link href='/profile#dashboard' passHref>
+                      <a rel='noopener noreferrer'>
+                        <span className='text-sm leading-6 text-qblack font-500 cursor-pointer'>
                           {langCntnt && langCntnt.Account}
                         </span>
                       </a>
                     </Link>
                   ) : (
-                    <Link href="/login" passHref>
-                      <a rel="noopener noreferrer">
-                        <span className="text-sm leading-6 text-qblack font-500 cursor-pointer">
+                    <Link href='/login' passHref>
+                      <a rel='noopener noreferrer'>
+                        <span className='text-sm leading-6 text-qblack font-500 cursor-pointer'>
                           {langCntnt && langCntnt.Account}
                         </span>
                       </a>
@@ -40,18 +42,18 @@ export default function TopBar({ className, contact }) {
                   )}
                 </li>
                 <li>
-                  <Link href="/tracking-order" passHref>
-                    <a rel="noopener noreferrer">
-                      <span className="text-sm leading-6 text-qblack font-500 cursor-pointer">
+                  <Link href='/tracking-order' passHref>
+                    <a rel='noopener noreferrer'>
+                      <span className='text-sm leading-6 text-qblack font-500 cursor-pointer'>
                         {langCntnt && langCntnt.Track_Order}
                       </span>
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" passHref>
-                    <a rel="noopener noreferrer">
-                      <span className="text-sm leading-6 text-qblack font-500 cursor-pointer">
+                  <Link href='/faq' passHref>
+                    <a rel='noopener noreferrer'>
+                      <span className='text-sm leading-6 text-qblack font-500 cursor-pointer'>
                         {langCntnt && langCntnt.Support}
                       </span>
                     </a>
@@ -59,13 +61,13 @@ export default function TopBar({ className, contact }) {
                 </li>
               </ul>
             </div>
-            <div className="topbar-dropdowns sm:block hidden">
+            <div className='topbar-dropdowns sm:block hidden'>
               <a href={`tel:${contact && contact.phone}`}>
-                <div className="flex space-x-2 items-center">
-                  <span className="text-qblack text-sm font-medium">
+                <div className='flex space-x-2 items-center'>
+                  <span className='text-qblack text-sm font-medium'>
                     {langCntnt && langCntnt.Need_help}
                   </span>
-                  <span className="text-xs text-qpurple font-bold leading-none">
+                  <span className='text-xs text-qpurple font-bold leading-none'>
                     {contact && contact.phone}
                   </span>
                 </div>
