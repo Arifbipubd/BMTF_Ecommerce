@@ -19,7 +19,12 @@ import TwoColumnAds from "./ProductAds/TwoColumnAds";
 import BestSellers from "./BestSellers";
 import Ads from "./Ads";
 export default function Home({ homepageData }) {
-  const categoryImage = "/assets/images/banner images bmtf ecommerce/top.jpg";
+  const topCategoryImage =
+    "/assets/images/banner images bmtf ecommerce/top.jpg";
+  const furnitureCategoryImage =
+    "/assets/images/banner images bmtf ecommerce/furniture.jpg";
+  const leatherCategoryImage =
+    "/assets/images/banner images bmtf ecommerce/leather.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
   const [sectionTitles, setSectionTitles] = useState(null);
@@ -102,7 +107,7 @@ export default function Home({ homepageData }) {
           <ViewMoreTitle
             className='top-selling-product md:mb-[60px] my-[30px]'
             seeMoreUrl={`/products?highlight=top_product`}
-            categoryImg={categoryImage}
+            categoryImg={topCategoryImage}
             categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
           >
             <SectionStyleTwo
@@ -114,6 +119,41 @@ export default function Home({ homepageData }) {
             />
           </ViewMoreTitle>
         )}
+
+        {homepage && (
+          <ViewMoreTitle
+            className='top-selling-product md:mb-[60px] my-[30px]'
+            seeMoreUrl={`/products?highlight=top_product`}
+            categoryImg={furnitureCategoryImage}
+            categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
+          >
+            <SectionStyleTwo
+              products={
+                homepage.topRatedProducts.length > 0
+                  ? homepage.topRatedProducts
+                  : []
+              }
+            />
+          </ViewMoreTitle>
+        )}
+
+        {homepage && (
+          <ViewMoreTitle
+            className='top-selling-product md:mb-[60px] my-[30px]'
+            seeMoreUrl={`/products?highlight=top_product`}
+            categoryImg={leatherCategoryImage}
+            categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
+          >
+            <SectionStyleTwo
+              products={
+                homepage.topRatedProducts.length > 0
+                  ? homepage.topRatedProducts
+                  : []
+              }
+            />
+          </ViewMoreTitle>
+        )}
+
         {/* {homepage && isMultivendor === 1 && (
           <div className='container-x mx-auto '>
             <div
