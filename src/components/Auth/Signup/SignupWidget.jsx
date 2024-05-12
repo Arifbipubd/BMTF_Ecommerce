@@ -1,3 +1,5 @@
+/** @format */
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -86,104 +88,104 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
     }
   }, [default_phone_code, getCountries]);
   return (
-    <div className="w-full lg:h-auto h-full overflow-y-scroll overflow-style-none">
-      <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-        <h1 className="text-[34px] font-bold text-qblack">
+    <div className='w-full lg:h-auto h-full overflow-y-scroll overflow-style-none'>
+      <div className='title-area flex flex-col justify-center items-center relative text-center mb-7'>
+        <h1 className='text-[34px] font-bold text-qblack'>
           {langCntnt && langCntnt.Create_Account}
         </h1>
       </div>
-      <div className="input-area">
-        <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
-          <div className="h-full">
+      <div className='input-area'>
+        <div className='flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5'>
+          <div className='h-full'>
             <InputCom
               placeholder={langCntnt && langCntnt.First_Name}
               label={langCntnt && langCntnt.First_Name + "*"}
-              name="fname"
-              type="text"
-              inputClasses="h-[50px]"
+              name='fname'
+              type='text'
+              inputClasses='h-[50px]'
               value={fname}
               inputHandler={(e) => setFname(e.target.value)}
             />
             {errors && Object.hasOwn(errors, "name") ? (
-              <span className="text-sm mt-1 text-qred">{errors.name[0]}</span>
+              <span className='text-sm mt-1 text-qred'>{errors.name[0]}</span>
             ) : (
               ""
             )}
           </div>
-          <div className="h-full">
+          <div className='h-full'>
             <InputCom
               placeholder={langCntnt && langCntnt.Last_Name}
               label={langCntnt && langCntnt.Last_Name + "*"}
-              name="lname"
-              type="text"
-              inputClasses="h-[50px]"
+              name='lname'
+              type='text'
+              inputClasses='h-[50px]'
               value={lname}
               inputHandler={(e) => setLname(e.target.value)}
             />
             {errors && Object.hasOwn(errors, "name") ? (
-              <span className="text-sm mt-1 text-qred">{errors.name[0]}</span>
+              <span className='text-sm mt-1 text-qred'>{errors.name[0]}</span>
             ) : (
               ""
             )}
           </div>
         </div>
-        <div className="input-item mb-5">
+        <div className='input-item mb-5'>
           <InputCom
             placeholder={langCntnt && langCntnt.Email}
             label={langCntnt && langCntnt.Email_Address + "*"}
-            name="email"
-            type="email"
-            inputClasses="h-[50px]"
+            name='email'
+            type='email'
+            inputClasses='h-[50px]'
             value={email}
             error={!!(errors && Object.hasOwn(errors, "email"))}
             inputHandler={(e) => setEmail(e.target.value)}
           />
           {errors && Object.hasOwn(errors, "email") ? (
-            <span className="text-sm mt-1 text-qred">{errors.email[0]}</span>
+            <span className='text-sm mt-1 text-qred'>{errors.email[0]}</span>
           ) : (
             ""
           )}
         </div>
         {parseInt(phone_number_required) === 1 && (
-          <div className="input-item mb-5 relative">
+          <div className='input-item mb-5 relative'>
             <InputCom
               placeholder={langCntnt && langCntnt.Phone_Number}
               label={langCntnt && langCntnt.phone + "*"}
-              name="phone"
-              type="text"
-              inputClasses="h-[50px] placeholder:capitalize pl-20"
+              name='phone'
+              type='text'
+              inputClasses='h-[50px] placeholder:capitalize pl-20'
               value={phone}
               error={!!(errors && Object.hasOwn(errors, "phone"))}
               inputHandler={(e) => setPhone(e.target.value)}
             />
             {errors && Object.hasOwn(errors, "phone") ? (
-              <span className="text-sm mt-1 text-qred">{errors.phone[0]}</span>
+              <span className='text-sm mt-1 text-qred'>{errors.phone[0]}</span>
             ) : (
               ""
             )}
             <button
               onClick={() => setCountryDropToggle(!countryDropToggle)}
-              type="button"
-              className="w-[70px] h-[50px] bg-qpurplelow/10 absolute left-0 top-[29px] flex justify-center items-center"
+              type='button'
+              className='w-[70px] h-[50px] bg-qpurplelow/10 absolute left-0 top-[29px] flex justify-center items-center'
             >
-              <div className="flex items-center">
+              <div className='flex items-center'>
                 <span>
                   <Image
-                    width="30"
-                    height="20"
+                    width='30'
+                    height='20'
                     src={`/assets/images/countries/${selectedCountry}.svg`}
-                    alt="country"
+                    alt='country'
                   />
                 </span>
-                <span className="text-qgray">
+                <span className='text-qgray'>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
+                    xmlns='http://www.w3.org/2000/svg'
+                    viewBox='0 0 24 24'
+                    width='24'
+                    height='24'
                   >
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path d="M12 14l-4-4h8z" />
+                    <path fill='none' d='M0 0h24v24H0z' />
+                    <path d='M12 14l-4-4h8z' />
                   </svg>
                 </span>
               </div>
@@ -193,7 +195,7 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
                 boxShadow: "rgb(0 0 0 / 14%) 0px 15px 50px 0px",
                 display: countryDropToggle ? "block" : "none",
               }}
-              className="country-dropdown-list w-[250px] h-[250px] bg-white absolute left-0 top-[80px] z-20 overflow-y-scroll"
+              className='country-dropdown-list w-[250px] h-[250px] bg-white absolute left-0 top-[80px] z-20 overflow-y-scroll'
             >
               <ul>
                 {getCountries &&
@@ -202,17 +204,17 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
                     <li
                       onClick={() => selectCountryhandler(item)}
                       key={i}
-                      className="flex space-x-1.5 items-center px-3 py-1 cursor-pointer"
+                      className='flex space-x-1.5 items-center px-3 py-1 cursor-pointer'
                     >
-                      <span className="w-[25px]">
+                      <span className='w-[25px]'>
                         <Image
-                          width="25"
-                          height="15"
+                          width='25'
+                          height='15'
                           src={`/assets/images/countries/${item.code}.svg`}
-                          alt="country"
+                          alt='country'
                         />
                       </span>
-                      <span className="text-sm text-qgray capitalize flex-1">
+                      <span className='text-sm text-qgray capitalize flex-1'>
                         {item.name}
                       </span>
                     </li>
@@ -222,37 +224,37 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
           </div>
         )}
 
-        <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
-          <div className="h-full">
+        <div className='flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5'>
+          <div className='h-full'>
             <InputCom
-              placeholder="******"
+              placeholder='******'
               label={langCntnt && langCntnt.Password + "*"}
-              name="password"
-              type="password"
-              inputClasses="h-[50px]"
+              name='password'
+              type='password'
+              inputClasses='h-[50px]'
               value={password}
               inputHandler={(e) => setPassword(e.target.value)}
             />
             {errors && Object.hasOwn(errors, "password") ? (
-              <span className="text-sm mt-1 text-qred">
+              <span className='text-sm mt-1 text-qred'>
                 {errors.password[0]}
               </span>
             ) : (
               ""
             )}
           </div>
-          <div className="h-full">
+          <div className='h-full'>
             <InputCom
-              placeholder="******"
+              placeholder='******'
               label={langCntnt && langCntnt.Confirm_Password + "*"}
-              name="confirm_password"
-              type="password"
-              inputClasses="h-[50px]"
+              name='confirm_password'
+              type='password'
+              inputClasses='h-[50px]'
               value={confirmPassword}
               inputHandler={(e) => setConfirmPassword(e.target.value)}
             />
             {errors && Object.hasOwn(errors, "password") ? (
-              <span className="text-sm mt-1 text-qred">
+              <span className='text-sm mt-1 text-qred'>
                 {errors.password[0]}
               </span>
             ) : (
@@ -261,38 +263,38 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
           </div>
         </div>
 
-        <div className="forgot-password-area mb-7">
-          <div className="remember-checkbox flex items-center space-x-2.5">
+        <div className='forgot-password-area mb-7'>
+          <div className='remember-checkbox flex items-center space-x-2.5'>
             <button
               onClick={rememberMe}
-              type="button"
-              className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
+              type='button'
+              className='w-5 h-5 text-qblack flex justify-center items-center border border-light-gray'
             >
               {checked && (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-5 w-5'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
+                    fillRule='evenodd'
+                    d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                    clipRule='evenodd'
                   />
                 </svg>
               )}
             </button>
             {redirect ? (
-              <Link href="/seller-terms-condition">
-                <span className="text-base text-qblack cursor-pointer">
+              <Link href='/terms-condition'>
+                <span className='text-base text-qblack cursor-pointer'>
                   {langCntnt &&
                     langCntnt.I_agree_all_terms_and_condition_in_ecoShop}
                 </span>
               </Link>
             ) : (
-              <button type="button">
-                <span className="text-base text-black cursor-pointer">
+              <button type='button'>
+                <span className='text-base text-black cursor-pointer'>
                   {langCntnt &&
                     langCntnt.I_agree_all_terms_and_condition_in_ecoShop}
                 </span>
@@ -300,19 +302,19 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
             )}
           </div>
         </div>
-        <div className="signin-area mb-3">
-          <div className="flex justify-center">
+        <div className='signin-area mb-3'>
+          <div className='flex justify-center'>
             <button
               onClick={doSignup}
-              type="button"
+              type='button'
               disabled={checked ? false : true}
-              className="bg-qpurple rounded-full disabled:bg-opacity-60 disabled:cursor-not-allowed  w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
+              className='bg-qpurple rounded-full disabled:bg-opacity-60 disabled:cursor-not-allowed  w-full h-[50px] font-semibold flex justify-center bg-purple items-center'
             >
-              <span className="text-sm text-white block">
+              <span className='text-sm text-white block'>
                 {langCntnt && langCntnt.Create_Account}
               </span>
               {loading && (
-                <span className="w-5 " style={{ transform: "scale(0.3)" }}>
+                <span className='w-5 ' style={{ transform: "scale(0.3)" }}>
                   <LoaderStyleOne />
                 </span>
               )}
@@ -320,20 +322,20 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
           </div>
         </div>
 
-        <div className="signup-area flex justify-center">
-          <p className="text-base text-qgray font-normal">
+        <div className='signup-area flex justify-center'>
+          <p className='text-base text-qgray font-normal'>
             {langCntnt && langCntnt.Already_have_an_Account}?
             {redirect ? (
-              <Link href="/login" passhref>
-                <a rel="noopener noreferrer">
-                  <span className="ml-2 text-qblack cursor-pointer">
+              <Link href='/login' passhref>
+                <a rel='noopener noreferrer'>
+                  <span className='ml-2 text-qblack cursor-pointer'>
                     {langCntnt && langCntnt.Log_In}
                   </span>
                 </a>
               </Link>
             ) : (
-              <button onClick={signupActionPopup} type="button">
-                <span className="ml-2 text-qblack cursor-pointer ml-1">
+              <button onClick={signupActionPopup} type='button'>
+                <span className='ml-2 text-qblack cursor-pointer ml-1'>
                   {langCntnt && langCntnt.Log_In}
                 </span>
               </button>
