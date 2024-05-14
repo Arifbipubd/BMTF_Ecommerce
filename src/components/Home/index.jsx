@@ -24,7 +24,7 @@ export default function Home({ homepageData }) {
   const furnitureCategoryImage =
     "/assets/images/banner images bmtf ecommerce/BMTF-Slider-3.jpg";
   const leatherCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-4.jpg";
+    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-4_Furniture.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
   const [sectionTitles, setSectionTitles] = useState(null);
