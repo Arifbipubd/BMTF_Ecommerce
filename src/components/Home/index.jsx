@@ -21,9 +21,9 @@ import Ads from "./Ads";
 export default function Home({ homepageData }) {
   const topCategoryImage =
     "/assets/images/banner images bmtf ecommerce/BMTF-Slider-2.jpg";
-  const furnitureCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-3.jpg";
   const leatherCategoryImage =
+    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-3.jpg";
+  const furnitureCategoryImage =
     "/assets/images/banner images bmtf ecommerce/BMTF-Slider-4_Furniture.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
@@ -124,13 +124,13 @@ export default function Home({ homepageData }) {
           <ViewMoreTitle
             className='top-selling-product md:mb-[60px] my-[30px]'
             seeMoreUrl={`/products?highlight=top_product`}
-            categoryImg={furnitureCategoryImage}
+            categoryImg={leatherCategoryImage}
             categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
           >
             <SectionStyleTwo
               products={
-                homepage.topRatedProducts.length > 0
-                  ? homepage.topRatedProducts
+                homepage.popularCategoryProducts.length > 0
+                  ? homepage.popularCategoryProducts
                   : []
               }
             />
@@ -141,7 +141,7 @@ export default function Home({ homepageData }) {
           <ViewMoreTitle
             className='top-selling-product md:mb-[60px] my-[30px]'
             seeMoreUrl={`/products?highlight=top_product`}
-            categoryImg={leatherCategoryImage}
+            categoryImg={furnitureCategoryImage}
             categoryTitle={sectionTitles && sectionTitles.Top_Rated_Products}
           >
             <SectionStyleTwo
