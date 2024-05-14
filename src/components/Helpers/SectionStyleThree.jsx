@@ -5,7 +5,7 @@ import DataIteration from "./DataIteration";
 import ViewMoreTitle from "./ViewMoreTitle";
 
 export default function SectionStyleThree({
-  categoryImage = "/assets/images/banner images bmtf ecommerce/new.jpg",
+  categoryImage = "/assets/images/banner images bmtf ecommerce/BMTF-Slider-1.jpg",
   className,
   sectionTitle,
   seeMoreUrl,

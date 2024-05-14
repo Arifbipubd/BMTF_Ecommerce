@@ -20,11 +20,11 @@ import BestSellers from "./BestSellers";
 import Ads from "./Ads";
 export default function Home({ homepageData }) {
   const topCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/top.jpg";
+    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-2.jpg";
   const furnitureCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/furniture.jpg";
+    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-3.jpg";
   const leatherCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/leather.jpg";
+    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-4.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
   const [sectionTitles, setSectionTitles] = useState(null);

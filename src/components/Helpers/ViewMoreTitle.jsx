@@ -85,7 +85,7 @@ export default function ViewMoreTitle({
         </div> */}
 
         <div className=' mb-5  '>
-          <img src={categoryImg} alt={categoryImg} />
+          <img src={categoryImg} alt={categoryImg} className=' w-full ' />
         </div>
 
         <div className='section-content'>{children && children}</div>
