@@ -20,11 +20,11 @@ import BestSellers from "./BestSellers";
 import Ads from "./Ads";
 export default function Home({ homepageData }) {
   const topCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-2.jpg";
+    "/assets/images/banner images bmtf ecommerce/banner-03.jpg";
   const leatherCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-3.jpg";
+    "/assets/images/banner images bmtf ecommerce/banner-02.jpg";
   const furnitureCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/BMTF-Slider-4_Furniture.jpg";
+    "/assets/images/banner images bmtf ecommerce/banner-04.jpg";
   const [homepage] = useState(homepageData);
   const getsectionTitles = homepageData.section_title;
   const [sectionTitles, setSectionTitles] = useState(null);
@@ -112,8 +112,10 @@ export default function Home({ homepageData }) {
           >
             <SectionStyleTwo
               products={
-                homepage.topRatedProducts.length > 0
-                  ? homepage.topRatedProducts
+                homepage.popularCategoryProducts.length > 0
+                  ? homepage.popularCategoryProducts.filter(
+                      (product) => product.category_id === 16
+                    )
                   : []
               }
             />
@@ -130,7 +132,9 @@ export default function Home({ homepageData }) {
             <SectionStyleTwo
               products={
                 homepage.popularCategoryProducts.length > 0
-                  ? homepage.popularCategoryProducts
+                  ? homepage.popularCategoryProducts.filter(
+                      (product) => product.category_id === 14
+                    )
                   : []
               }
             />
