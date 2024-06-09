@@ -127,7 +127,8 @@ export default function Footer({ settings, contact }) {
                     Bangladesh Machine Tools Factory Limited (BMTF), under the
                     management of the Bangladesh Army, spearheads diverse
                     enterprises across 156.47 acres, contributing significantly
-                    to the national economy and industrial growth.
+                    to the national economy and industrial growth. <br /> Trade
+                    License no: 5/12 <br /> Tin: 876812939905
                   </p>
                 </div>
               </div>
