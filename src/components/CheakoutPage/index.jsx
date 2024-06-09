@@ -2471,26 +2471,27 @@ function CheakoutPage() {
                   <div className=' mt-3 '>
                     <span>
                       By placing order, you agree with our{" "}
-                      <a
-                        className=' text-blue-500 fw-bold '
-                        href='/terms-condition'
-                      >
-                        Terms and Condition
-                      </a>
-                      ,{" "}
-                      <a
-                        className=' text-blue-500 fw-bold '
-                        href='/pages?custom=return-refund'
-                      >
-                        Return and Refund Policy
-                      </a>{" "}
-                      &{" "}
-                      <a
-                        className=' text-blue-500 fw-bold '
-                        href='/privacy-policy'
-                      >
-                        Privacy Policy
-                      </a>
+                      <span className=' text-blue-500 fw-bold '>
+                        <Link href='/terms-condition'>Terms and Condition</Link>
+                      </span>
+                      ,
+                      <span className=' text-blue-500 fw-bold '>
+                        <Link
+                          className=' text-blue-500 fw-bold '
+                          href='/pages?custom=return-refund'
+                        >
+                          Return and Refund Policy
+                        </Link>
+                      </span>
+                      &
+                      <span className=' text-blue-500 fw-bold '>
+                        <Link
+                          className=' text-blue-500 fw-bold '
+                          href='/privacy-policy'
+                        >
+                          Privacy Policy
+                        </Link>
+                      </span>
                       .
                     </span>
                   </div>
