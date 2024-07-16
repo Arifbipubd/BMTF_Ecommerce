@@ -302,7 +302,7 @@ export default function AllProductPage({ response, sellerInfo }) {
           .then((res) => {
             res.data && res.data.products.data.length > 0
               ? setProducts(res.data.products.data)
-              : setProducts(response.data.products.data);
+              : setProducts([]);
             setNxtPage(res.data && res.data.products.next_page_url);
           })
           .catch((err) => {
