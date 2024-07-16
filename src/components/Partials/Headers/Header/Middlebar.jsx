@@ -360,7 +360,7 @@ export default function Middlebar({ className, settings }) {
                         </div>
                       </div>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href='/blogs' passHref>
                         <a rel='noopener noreferrer'>
                           <span className='flex items-center text-sm font-600 cursor-pointer capitalize'>
@@ -368,7 +368,7 @@ export default function Middlebar({ className, settings }) {
                           </span>
                         </a>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link href='/contact' passHref>
                         <a rel='noopener noreferrer'>

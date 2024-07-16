@@ -281,7 +281,7 @@ export default function Navbar({ className }) {
                 </a>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href='/blogs' passHref>
                 <a rel='noopener noreferrer'>
                   <span className='flex items-center text-sm font-600 cursor-pointer capitalize'>
@@ -289,7 +289,7 @@ export default function Navbar({ className }) {
                   </span>
                 </a>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href='/contact' passHref>
                 <a rel='noopener noreferrer'>
