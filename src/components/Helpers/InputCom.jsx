@@ -9,6 +9,7 @@ export default function InputCom({
   inputClasses,
   error = false,
   labelClasses = "text-qgray text-[13px] font-normal",
+  ...props
 }) {
   return (
     <div className="input-com w-full h-full">
@@ -34,6 +35,7 @@ export default function InputCom({
           }`}
           type={type}
           id={name}
+          {...props}
         />
         {children && children}
       </div>

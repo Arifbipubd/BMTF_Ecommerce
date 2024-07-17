@@ -68,6 +68,28 @@ function CheakoutPage() {
   const [couponCode, setCouponCode] = useState(null);
   const [bankInfo, setBankInfo] = useState(null);
   const [discountCoupon, setDiscountCoupon] = useState(0);
+
+  const handlePhoneNumberChange = (e) => {
+    const inputNumber = e.target.value.trim();
+    // Check if the input is a valid number
+    if (!isNaN(inputNumber) && inputNumber !== "") {
+      if (inputNumber.length > 11) {
+        setErrors({
+          ...errors,
+          phone: ["Phone number can't be more than 11 digits."]
+        });
+      } else {
+        console.log(typeof(inputNumber))
+        setPhone(`${inputNumber}`);
+        setErrors(null);
+      }
+    } else {
+      setErrors({
+        ...errors,
+        phone: ["Phone number must be numeric."]
+      });
+    }
+  };  
   useEffect(() => {
     if (couponCode) {
       if (couponCode.offer_type === "2") {
@@ -1192,8 +1214,9 @@ function CheakoutPage() {
                               label={langCntnt && langCntnt.Phone_Number + "*"}
                               placeholder='012 3  *******'
                               inputClasses='w-full h-[50px]'
+                              type={'text'}
                               value={phone}
-                              inputHandler={(e) => setPhone(e.target.value)}
+                              inputHandler={handlePhoneNumberChange}
                               error={
                                 !!(errors && Object.hasOwn(errors, "phone"))
                               }
