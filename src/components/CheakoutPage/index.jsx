@@ -71,25 +71,30 @@ function CheakoutPage() {
 
   const handlePhoneNumberChange = (e) => {
     const inputNumber = e.target.value.trim();
+
     // Check if the input is a valid number
-    if (!isNaN(inputNumber) && inputNumber !== "") {
-      if (inputNumber.length > 11) {
+    if (!/^\d*$/.test(inputNumber)) {
         setErrors({
-          ...errors,
-          phone: ["Phone number can't be more than 11 digits."]
+            ...errors,
+            phone: ["Phone number must be numeric."]
         });
-      } else {
-        console.log(typeof(inputNumber))
-        setPhone(`${inputNumber}`);
-        setErrors(null);
-      }
+        setPhone('');
+    } else if (inputNumber.length > 12) {
+        setErrors({
+            ...errors,
+            phone: ["Phone number can't be more than 11 digits."]
+        });
+    } else if (inputNumber.length > 1 && !inputNumber.startsWith("01")) {
+        setErrors({
+            ...errors,
+            phone: ["Phone number must start with 01."]
+        });
     } else {
-      setErrors({
-        ...errors,
-        phone: ["Phone number must be numeric."]
-      });
+        setPhone(inputNumber);
+        setErrors(null);
     }
-  };  
+  } 
+
   useEffect(() => {
     if (couponCode) {
       if (couponCode.offer_type === "2") {
