@@ -1,8 +1,14 @@
 import Link from "next/link";
 import SimpleSlider from "../Helpers/SliderCom";
 import ShopNowBtn from "../Helpers/Buttons/ShopNowBtn";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 export default function Banner({ className, sliders = [] }) {
+  const [sliderImage, setSliderImage] = useState([
+    '/assets/images/banner images bmtf ecommerce/furniture.jpg',
+    '/assets/images/banner images bmtf ecommerce/new.jpg',
+    '/assets/images/banner images bmtf ecommerce/leather.jpg',
+  ])
+
   const sliderRef = useRef(null);
   const settings = {
     infinite: true,
@@ -21,16 +27,23 @@ export default function Banner({ className, sliders = [] }) {
   };
   return (
     <>
-      <div className={`w-full xl:h-[733px] h-[500px] ${className || ""}`}>
+      <div className={`w-full xl:h-[733px] md:h-[500px] ${className || ""}`}>
         <div className="main-wrapper w-full h-full">
           {/*    slider area*/}
-          <div className="hero-slider-wrapper xl:h-full mb-20 xl:mb-0  w-full relative">
+          <div className="hero-slider-wrapper xl:h-full mb-10 md:mb-20 xl:mb-0  w-full relative">
             <SimpleSlider settings={settings} selector={sliderRef}>
               {sliders.length > 0 &&
                 sliders.map((item, i) => (
-                  <div key={i} className="item w-full xl:h-[733px] h-[500px]">
+                  <div key={i} className="item w-full xl:h-[733px] md:h-[500px]">
+                    <div className="md:hidden w-full h-full">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={sliderImage[i]}
+                        alt=""
+                      />
+                    </div>
                     <div
-                      className="w-full h-full relative md:bg-center"
+                      className="w-full h-full relative md:bg-center hidden md:block"
                       style={{
                         backgroundImage: `url(${
                           process.env.NEXT_PUBLIC_BASE_URL + item.image

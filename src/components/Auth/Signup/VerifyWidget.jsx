@@ -49,6 +49,35 @@ function VerifyWidget({ redirect = true, verifyActionPopup }) {
         }
       });
   };
+
+  // Resent otp
+  const [timer, setTimer] = useState(30);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    // Start the timer when the component mounts
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev > 0) {
+          return prev - 1;
+        } else {
+          clearInterval(interval);
+          setIsDisabled(false); // Enable the button
+          return 0;
+        }
+      });
+    }, 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleResend = () => {
+    // console.log('')
+    // setTimer(30); // Reset the timer
+    // setIsDisabled(true); // Disable the button again
+  };
+
   return (
     <div className="w-full">
       <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
@@ -88,6 +117,18 @@ function VerifyWidget({ redirect = true, verifyActionPopup }) {
               )}
             </button>
           </div>
+        </div>
+        <div className="flex items-center justify-end">
+          <button
+            onClick={handleResend}
+            disabled={isDisabled}
+            className="text-blue-500 text-sm hover:underline disabled:hover:no-underline disabled:text-qgray font-bold disabled:cursor-not-allowed"
+          >
+            Resend OTP
+          </button> &nbsp;
+          <span className="text-gray-400 text-sm">
+            ({Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")})
+          </span>
         </div>
       </div>
     </div>
