@@ -335,7 +335,7 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
               </Link>
             ) : (
               <button onClick={signupActionPopup} type='button'>
-                <span className='ml-2 text-qblack cursor-pointer ml-1'>
+                <span className='ml-2 text-qblack cursor-pointer'>
                   {langCntnt && langCntnt.Log_In}
                 </span>
               </button>

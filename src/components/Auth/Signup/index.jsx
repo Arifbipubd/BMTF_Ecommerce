@@ -7,6 +7,8 @@ import Layout from "../../Partials/Layout";
 import SignupWidget from "./SignupWidget";
 import VerifyWidget from "./VerifyWidget";
 
+import { FormDataProvider } from "./FormDataContext";
+
 export default function Signup() {
   const { websiteSetup } = useSelector((state) => state.websiteSetup);
   const [verify, setVerify] = useState(false);
@@ -43,7 +45,7 @@ export default function Signup() {
                 alt="login"
               />
             )}
-            <div className="bg-[#232532] bg-opacity-50 relative w-full h-full absolute left-0 top-0"></div>
+            <div className="bg-[#232532] bg-opacity-50 relative w-full h-full left-0 top-0"></div>
           </div>
         </div>
         <div className="container-x mx-auto">

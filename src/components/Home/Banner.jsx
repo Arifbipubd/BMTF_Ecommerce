@@ -3,11 +3,6 @@ import SimpleSlider from "../Helpers/SliderCom";
 import ShopNowBtn from "../Helpers/Buttons/ShopNowBtn";
 import { useRef, useState } from "react";
 export default function Banner({ className, sliders = [] }) {
-  const [sliderImage, setSliderImage] = useState([
-    '/assets/images/banner images bmtf ecommerce/furniture.jpg',
-    '/assets/images/banner images bmtf ecommerce/new.jpg',
-    '/assets/images/banner images bmtf ecommerce/leather.jpg',
-  ])
 
   const sliderRef = useRef(null);
   const settings = {
@@ -38,8 +33,9 @@ export default function Banner({ className, sliders = [] }) {
                     <div className="md:hidden w-full h-full">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={sliderImage[i]}
+                        src={process.env.NEXT_PUBLIC_BASE_URL + item.image}
                         alt=""
+                        className="min-h-[17.125rem]"
                       />
                     </div>
                     <div
