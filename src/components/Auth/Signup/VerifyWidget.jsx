@@ -7,6 +7,8 @@ import LoaderStyleOne from "../../Helpers/Loaders/LoaderStyleOne";
 import languageModel from "../../../../utils/languageModel";
 
 function VerifyWidget({ redirect = true, verifyActionPopup }) {
+  const [phone, setPhone] = useState(localStorage.getItem("phone"));
+  console.log(phone);
   const router = useRouter();
   const location = useRouter();
   const [otp, setOtp] = useState("");
@@ -53,31 +55,45 @@ function VerifyWidget({ redirect = true, verifyActionPopup }) {
   // Resent otp
   const [timer, setTimer] = useState(30);
   const [isDisabled, setIsDisabled] = useState(true);
+  let intervalId = null;
 
-  useEffect(() => {
-    // Start the timer when the component mounts
-    const interval = setInterval(() => {
+  // Function to start the timer
+  const startTimer = () => {
+    setIsDisabled(true);
+    setTimer(30);
+    intervalId = setInterval(() => {
       setTimer((prev) => {
         if (prev > 0) {
           return prev - 1;
         } else {
-          clearInterval(interval);
-          setIsDisabled(false); // Enable the button
+          clearInterval(intervalId);
+          setIsDisabled(false);
           return 0;
         }
       });
     }, 1000);
-
-    // Clear the interval when the component unmounts
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleResend = () => {
-    // console.log('')
-    // setTimer(30); // Reset the timer
-    // setIsDisabled(true); // Disable the button again
   };
 
+  useEffect(() => {
+    // Start the timer when the component mounts
+    startTimer();
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const handleResend = async () => {
+    try {
+      const res = await apiRequest.resend({
+        email: location.query.email,
+        phone,
+      });
+      toast.success(res.data.notification);
+      startTimer(); // Start the timer again
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
   return (
     <div className="w-full">
       <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
@@ -125,7 +141,8 @@ function VerifyWidget({ redirect = true, verifyActionPopup }) {
             className="text-blue-500 text-sm hover:underline disabled:hover:no-underline disabled:text-qgray font-bold disabled:cursor-not-allowed"
           >
             Resend OTP
-          </button> &nbsp;
+          </button>{" "}
+          &nbsp;
           <span className="text-gray-400 text-sm">
             ({Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")})
           </span>

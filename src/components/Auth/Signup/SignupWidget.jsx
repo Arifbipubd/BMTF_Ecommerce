@@ -45,6 +45,7 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
   };
   const doSignup = async () => {
     setLoading(true);
+    localStorage.setItem('phone', phone);
     await apiRequest
       .signup({
         name: fname + " " + lname,
