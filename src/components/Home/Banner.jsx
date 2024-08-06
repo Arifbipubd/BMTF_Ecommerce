@@ -30,16 +30,16 @@ export default function Banner({ className, sliders = [] }) {
               {sliders.length > 0 &&
                 sliders.map((item, i) => (
                   <div key={i} className="item w-full xl:h-[733px] md:h-[500px]">
-                    <div className="md:hidden w-full h-full">
+                    <div className="">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={process.env.NEXT_PUBLIC_BASE_URL + item.image}
                         alt=""
-                        className="min-h-[17.125rem]"
+                        className="min-h-[17.125rem] md:min-h-[500px] xl:min-h-[733px] object-cover"
                       />
                     </div>
-                    <div
-                      className="w-full h-full relative md:bg-center hidden md:block"
+                    {/* <div
+                      className="w-full h-full relative md:bg-center hidden"
                       style={{
                         backgroundImage: `url(${
                           process.env.NEXT_PUBLIC_BASE_URL + item.image
@@ -75,7 +75,7 @@ export default function Banner({ className, sliders = [] }) {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
             </SimpleSlider>
