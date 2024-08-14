@@ -26,6 +26,45 @@ function SignupWidget({ redirect = true, signupActionPopup, changeContent }) {
     setPhone(value.dial_code);
     setCountryDropToggle(false);
   };
+
+  const handlePhoneNumberChange = (e) => {
+    const inputNumber = e.target.value.trim();
+
+    // Check if the input is a valid number
+    if (!/^\d*$/.test(inputNumber)) {
+        setErrors({
+            ...errors,
+            phone: ["Phone number must be numeric."]
+        });
+        setPhone('');
+    } else if (inputNumber.length >= 12) {
+        setErrors({
+            ...errors,
+            phone: ["Phone number can't be more than 11 digits."]
+        });
+
+        setTimeout(() => {
+          setErrors(null)
+        }, 3000)
+    } else if (inputNumber.length > 1 && !inputNumber.startsWith("01")) {
+        setErrors({
+            ...errors,
+            phone: ["Phone number must start with 01."]
+        });
+    } else {
+        setPhone(inputNumber);
+        setErrors(null);
+    }
+  } 
+  const handleInputBlur = () => {
+    if(phone.length < 11){
+      setErrors({
+        ...errors,
+        phone: ["Phone number must be 11 digit."]
+    });
+    }
+  }
+  
   useEffect(() => {
     if (!getCountries) {
       setGetCountries(countries && countries.countries);
