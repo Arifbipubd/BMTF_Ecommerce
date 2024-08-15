@@ -26,6 +26,45 @@ export default function AddressesTab() {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
   const [langCntnt, setLangCntnt] = useState(null);
+
+  const handlePhoneNumberChange = (e) => {
+    const inputNumber = e.target.value.trim();
+
+    // Check if the input is a valid number
+    if (!/^\d*$/.test(inputNumber)) {
+      setErrors({
+        ...errors,
+        phone: ["Phone number must be numeric."],
+      });
+      setPhone("");
+    } else if (inputNumber.length >= 12) {
+      setErrors({
+        ...errors,
+        phone: ["Phone number can't be more than 11 digits."],
+      });
+
+      setTimeout(() => {
+        setErrors(null);
+      }, 3000);
+    } else if (inputNumber.length > 1 && !inputNumber.startsWith("01")) {
+      setErrors({
+        ...errors,
+        phone: ["Phone number must start with 01."],
+      });
+    } else {
+      setPhone(inputNumber);
+      setErrors(null);
+    }
+  };
+  const handleInputBlur = () => {
+    if (phone.length < 11) {
+      setErrors({
+        ...errors,
+        phone: ["Phone number must be 11 digit."],
+      });
+    }
+  };
+
   useEffect(() => {
     setLangCntnt(languageModel());
   }, []);
@@ -43,6 +82,7 @@ export default function AddressesTab() {
         console.log(err);
       });
   };
+
   useEffect(() => {
     if (auth()) {
       getAllAddress();
@@ -262,7 +302,10 @@ export default function AddressesTab() {
               {langCntnt && langCntnt.Add_New_Address}
             </h1>
             <span
-              onClick={() => setNewAddress(!newAddress)}
+              onClick={() => {
+                setNewAddress(!newAddress);
+                setErrors(null);
+              }}
               className="text-qpurple cursor-pointer"
             >
               <svg
@@ -325,7 +368,8 @@ export default function AddressesTab() {
                     placeholder="012 3  *******"
                     inputClasses="w-full h-[50px]"
                     value={phone}
-                    inputHandler={(e) => setPhone(e.target.value)}
+                    inputHandler={handlePhoneNumberChange}
+                    onBlur={handleInputBlur}
                     error={!!(errors && Object.hasOwn(errors, "phone"))}
                   />
                   {errors && Object.hasOwn(errors, "phone") ? (

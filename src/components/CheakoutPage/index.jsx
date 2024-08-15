@@ -79,11 +79,15 @@ function CheakoutPage() {
             phone: ["Phone number must be numeric."]
         });
         setPhone('');
-    } else if (inputNumber.length > 12) {
+    } else if (inputNumber.length >= 12) {
         setErrors({
             ...errors,
             phone: ["Phone number can't be more than 11 digits."]
         });
+
+        setTimeout(() => {
+          setErrors(null)
+        }, 3000)
     } else if (inputNumber.length > 1 && !inputNumber.startsWith("01")) {
         setErrors({
             ...errors,
@@ -94,6 +98,14 @@ function CheakoutPage() {
         setErrors(null);
     }
   } 
+  const handleInputBlur = () => {
+    if(phone.length < 11){
+      setErrors({
+        ...errors,
+        phone: ["Phone number must be 11 digit."]
+    });
+    }
+  }
 
   useEffect(() => {
     if (couponCode) {
@@ -1222,6 +1234,7 @@ function CheakoutPage() {
                               type={'text'}
                               value={phone}
                               inputHandler={handlePhoneNumberChange}
+                              onBlur={handleInputBlur}
                               error={
                                 !!(errors && Object.hasOwn(errors, "phone"))
                               }
