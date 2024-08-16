@@ -19,6 +19,7 @@ export default function AllProductPage({ response, sellerInfo }) {
   const router = useRouter();
   const [categoryExistInRoute, setCategoryExistInRoute] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [isFiltering, setIsFiltering] = useState(false);
   useEffect(() => {
     if (response.data && response.data.products.data.length === 0) {
       if (router.query.search && router.query.category) {
@@ -239,6 +240,7 @@ export default function AllProductPage({ response, sellerInfo }) {
     setVolume(volumeArr);
   }, [response.data]);
   useEffect(() => {
+    console.log(variantsFilter, categoriesFilter)
     if (response.data) {
       const min =
         response.data &&
@@ -319,8 +321,7 @@ export default function AllProductPage({ response, sellerInfo }) {
     selectedVarientFilterItem,
     selectedCategoryFilterItem,
     selectedBrandsFilterItem,
-    volume,
-    response.data,
+    volume
   ]);
   const nextPageHandler = async () => {
     setLoading(true);
@@ -356,70 +357,70 @@ export default function AllProductPage({ response, sellerInfo }) {
   }, []);
   return (
     <>
-      <Layout childrenClasses='pt-0 pb-0'>
-        <div className='products-page-wrapper w-full bg-white pt-[60px] pb-[114px]'>
-          <div className='container-x mx-auto'>
+      <Layout childrenClasses="pt-0 pb-0">
+        <div className="products-page-wrapper w-full bg-white pt-[60px] pb-[114px]">
+          <div className="container-x mx-auto">
             {sellerInfo && (
               <div
-                data-aos='fade-right'
-                className='saller-info w-full mb-[40px] sm:h-[328px]  sm:flex justify-between items-center px-11 overflow-hidden relative py-10 sm:py-0 rounded'
+                data-aos="fade-right"
+                className="saller-info w-full mb-[40px] sm:h-[328px]  sm:flex justify-between items-center px-11 overflow-hidden relative py-10 sm:py-0 rounded"
                 style={{
                   background: `url(/assets/images/saller-cover.png) no-repeat`,
                   backgroundSize: "cover",
                 }}
               >
-                <div className='saller-text-details  w-72'>
+                <div className="saller-text-details  w-72">
                   <ul>
-                    <li className='text-qblack flex space-x-5 items-center leading-9 text-base font-normal'>
+                    <li className="text-qblack flex space-x-5 items-center leading-9 text-base font-normal">
                       <span>
                         <svg
-                          width='16'
-                          height='12'
-                          viewBox='0 0 16 12'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
+                          width="16"
+                          height="12"
+                          viewBox="0 0 16 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d='M0.00250844 3.36719C0.156817 3.46656 0.260523 3.53094 0.362354 3.59906C2.3971 4.95656 4.43123 6.31406 6.46598 7.67156C7.55426 8.39781 8.44825 8.39844 9.53591 7.67281C11.5794 6.30969 13.6217 4.94531 15.6652 3.58219C15.7582 3.52031 15.8544 3.46219 15.9856 3.37969C15.9913 3.50031 15.9994 3.58781 15.9994 3.67594C16 5.91656 16.0013 8.15656 15.9994 10.3972C15.9988 11.3853 15.3903 11.9984 14.4038 11.9991C10.135 12.0009 5.86624 12.0009 1.59682 11.9991C0.612871 11.9984 0.00313317 11.3834 0.00250844 10.3959C0.00125898 8.15469 0.00250844 5.91469 0.00250844 3.67406C0.00250844 3.59156 0.00250844 3.50844 0.00250844 3.36719Z'
-                            fill='#232532'
+                            d="M0.00250844 3.36719C0.156817 3.46656 0.260523 3.53094 0.362354 3.59906C2.3971 4.95656 4.43123 6.31406 6.46598 7.67156C7.55426 8.39781 8.44825 8.39844 9.53591 7.67281C11.5794 6.30969 13.6217 4.94531 15.6652 3.58219C15.7582 3.52031 15.8544 3.46219 15.9856 3.37969C15.9913 3.50031 15.9994 3.58781 15.9994 3.67594C16 5.91656 16.0013 8.15656 15.9994 10.3972C15.9988 11.3853 15.3903 11.9984 14.4038 11.9991C10.135 12.0009 5.86624 12.0009 1.59682 11.9991C0.612871 11.9984 0.00313317 11.3834 0.00250844 10.3959C0.00125898 8.15469 0.00250844 5.91469 0.00250844 3.67406C0.00250844 3.59156 0.00250844 3.50844 0.00250844 3.36719Z"
+                            fill="#232532"
                           />
                           <path
-                            d='M8.00103 0.00122449C10.1557 0.00122449 12.3104 -0.00252551 14.4651 0.00309949C15.366 0.00559949 16.0345 0.6806 15.9963 1.53997C15.9732 2.05935 15.7058 2.4331 15.2792 2.71622C13.4156 3.95435 11.5564 5.1981 9.6953 6.43998C9.42729 6.61873 9.15928 6.79873 8.89002 6.97685C8.29715 7.3706 7.70428 7.37185 7.11141 6.97623C4.97483 5.54935 2.83637 4.12435 0.699789 2.6956C0.100046 2.29435 -0.126731 1.68935 0.0681849 1.04747C0.256229 0.42685 0.820362 0.00559949 1.50507 0.00372449C3.33741 -0.00252551 5.16912 0.00122449 7.00146 0.00122449C7.33506 0.00122449 7.66805 0.00122449 8.00103 0.00122449Z'
-                            fill='#232532'
+                            d="M8.00103 0.00122449C10.1557 0.00122449 12.3104 -0.00252551 14.4651 0.00309949C15.366 0.00559949 16.0345 0.6806 15.9963 1.53997C15.9732 2.05935 15.7058 2.4331 15.2792 2.71622C13.4156 3.95435 11.5564 5.1981 9.6953 6.43998C9.42729 6.61873 9.15928 6.79873 8.89002 6.97685C8.29715 7.3706 7.70428 7.37185 7.11141 6.97623C4.97483 5.54935 2.83637 4.12435 0.699789 2.6956C0.100046 2.29435 -0.126731 1.68935 0.0681849 1.04747C0.256229 0.42685 0.820362 0.00559949 1.50507 0.00372449C3.33741 -0.00252551 5.16912 0.00122449 7.00146 0.00122449C7.33506 0.00122449 7.66805 0.00122449 8.00103 0.00122449Z"
+                            fill="#232532"
                           />
                         </svg>
                       </span>
                       <span>{sellerInfo.seller.email}</span>
                     </li>
-                    <li className='text-qblack flex space-x-5 items-center leading-9 text-base font-normal'>
+                    <li className="text-qblack flex space-x-5 items-center leading-9 text-base font-normal">
                       <span>
                         <svg
-                          width='15'
-                          height='14'
-                          viewBox='0 0 15 14'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
+                          width="15"
+                          height="14"
+                          viewBox="0 0 15 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d='M11.5085 14.0001C10.5529 13.9553 9.6013 13.6377 8.6926 13.1988C6.27351 12.0295 4.30056 10.3639 2.60467 8.39981C1.65664 7.30216 0.854189 6.11977 0.351704 4.78105C0.0963526 4.09939 -0.084448 3.40133 0.0405862 2.66719C0.106332 2.27908 0.266587 1.9347 0.568313 1.65372C1.00388 1.24812 1.43592 0.838683 1.87618 0.437996C2.50077 -0.129964 3.37366 -0.152376 4.00587 0.410664C4.71205 1.03985 5.40649 1.68215 6.07862 2.34304C6.80124 3.05367 6.54589 4.09666 5.5826 4.47384C4.70383 4.81768 4.37452 5.42773 4.72966 6.25151C5.4106 7.8324 6.63746 8.94153 8.32865 9.57454C9.12171 9.87137 9.85842 9.52698 10.1918 8.7923C10.6145 7.86082 11.7292 7.63069 12.5129 8.33093C13.2114 8.9552 13.8936 9.59477 14.5669 10.2425C15.1533 10.8067 15.1416 11.6299 14.5475 12.2077C14.1014 12.6417 13.64 13.0627 13.1792 13.483C12.7383 13.8864 12.1842 13.999 11.5085 14.0001Z'
-                            fill='#232532'
+                            d="M11.5085 14.0001C10.5529 13.9553 9.6013 13.6377 8.6926 13.1988C6.27351 12.0295 4.30056 10.3639 2.60467 8.39981C1.65664 7.30216 0.854189 6.11977 0.351704 4.78105C0.0963526 4.09939 -0.084448 3.40133 0.0405862 2.66719C0.106332 2.27908 0.266587 1.9347 0.568313 1.65372C1.00388 1.24812 1.43592 0.838683 1.87618 0.437996C2.50077 -0.129964 3.37366 -0.152376 4.00587 0.410664C4.71205 1.03985 5.40649 1.68215 6.07862 2.34304C6.80124 3.05367 6.54589 4.09666 5.5826 4.47384C4.70383 4.81768 4.37452 5.42773 4.72966 6.25151C5.4106 7.8324 6.63746 8.94153 8.32865 9.57454C9.12171 9.87137 9.85842 9.52698 10.1918 8.7923C10.6145 7.86082 11.7292 7.63069 12.5129 8.33093C13.2114 8.9552 13.8936 9.59477 14.5669 10.2425C15.1533 10.8067 15.1416 11.6299 14.5475 12.2077C14.1014 12.6417 13.64 13.0627 13.1792 13.483C12.7383 13.8864 12.1842 13.999 11.5085 14.0001Z"
+                            fill="#232532"
                           />
                         </svg>
                       </span>
                       <span>{sellerInfo.seller.phone}</span>
                     </li>
-                    <li className='text-qblack flex space-x-5 items-center leading-9 text-base font-normal'>
+                    <li className="text-qblack flex space-x-5 items-center leading-9 text-base font-normal">
                       <span>
                         <svg
-                          width='14'
-                          height='19'
-                          viewBox='0 0 14 19'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
+                          width="14"
+                          height="19"
+                          viewBox="0 0 14 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d='M6.97116 2.68819e-05C2.96055 0.0118815 -0.248362 3.57049 0.0150623 7.72998C0.107867 9.19477 0.60259 10.5136 1.45069 11.6909C3.13831 14.0337 4.82379 16.3787 6.5107 18.7214C6.77412 19.0875 7.21745 19.0934 7.47659 18.734C9.17135 16.3816 10.8761 14.0359 12.5566 11.6724C15.2879 7.83075 14.0101 2.65546 9.84454 0.632026C9.03428 0.239342 7.93562 -0.00293677 6.97116 2.68819e-05ZM6.99257 9.29479C5.81395 9.29035 4.85877 8.29975 4.85734 7.08094C4.85592 5.8614 5.80752 4.86931 6.98686 4.86116C8.17762 4.85301 9.14708 5.85769 9.13994 7.09428C9.13351 8.3116 8.16977 9.29924 6.99257 9.29479Z'
-                            fill='#232532'
+                            d="M6.97116 2.68819e-05C2.96055 0.0118815 -0.248362 3.57049 0.0150623 7.72998C0.107867 9.19477 0.60259 10.5136 1.45069 11.6909C3.13831 14.0337 4.82379 16.3787 6.5107 18.7214C6.77412 19.0875 7.21745 19.0934 7.47659 18.734C9.17135 16.3816 10.8761 14.0359 12.5566 11.6724C15.2879 7.83075 14.0101 2.65546 9.84454 0.632026C9.03428 0.239342 7.93562 -0.00293677 6.97116 2.68819e-05ZM6.99257 9.29479C5.81395 9.29035 4.85877 8.29975 4.85734 7.08094C4.85592 5.8614 5.80752 4.86931 6.98686 4.86116C8.17762 4.85301 9.14708 5.85769 9.13994 7.09428C9.13351 8.3116 8.16977 9.29924 6.99257 9.29479Z"
+                            fill="#232532"
                           />
                         </svg>
                       </span>
@@ -428,12 +429,12 @@ export default function AllProductPage({ response, sellerInfo }) {
                   </ul>
                 </div>
 
-                <div className='saller-name lg:block hidden'>
-                  <h1 className='text-[60px] font-bold text-qblack'>
+                <div className="saller-name lg:block hidden">
+                  <h1 className="text-[60px] font-bold text-qblack">
                     {sellerInfo.seller.shop_name}
                   </h1>
 
-                  <div className='flex justify-center space-x-0.5'>
+                  <div className="flex justify-center space-x-0.5">
                     {Array.from(
                       Array(parseInt(sellerInfo.seller.averageRating)),
                       () => (
@@ -457,17 +458,17 @@ export default function AllProductPage({ response, sellerInfo }) {
                                 parseInt(sellerInfo.seller.averageRating) +
                                 Math.random()
                               }
-                              className='text-qgray'
+                              className="text-qgray"
                             >
                               <svg
-                                width='18'
-                                height='17'
-                                viewBox='0 0 18 17'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                                className='fill-current'
+                                width="18"
+                                height="17"
+                                viewBox="0 0 18 17"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="fill-current"
                               >
-                                <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z' />
+                                <path d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z" />
                               </svg>
                             </span>
                           )
@@ -477,23 +478,23 @@ export default function AllProductPage({ response, sellerInfo }) {
                   </div>
                 </div>
 
-                <div className='saller-logo mt-5 sm:mt-5'>
-                  <div className='flex sm:justify-center justify-start'>
-                    <div className='w-[170px] h-[170px] flex justify-center items-center rounded-full bg-white relative mb-1 overflow-hidden'>
+                <div className="saller-logo mt-5 sm:mt-5">
+                  <div className="flex sm:justify-center justify-start">
+                    <div className="w-[170px] h-[170px] flex justify-center items-center rounded-full bg-white relative mb-1 overflow-hidden">
                       <Image
-                        layout='fill'
-                        objectFit='scale-down'
+                        layout="fill"
+                        objectFit="scale-down"
                         src={`${
                           process.env.NEXT_PUBLIC_BASE_URL +
                           sellerInfo.seller.logo
                         }`}
-                        alt='logo'
-                        className='object-contain'
+                        alt="logo"
+                        className="object-contain"
                       />
                     </div>
                   </div>
-                  <div className='flex sm:justify-center justify-start'>
-                    <span className='text-[30px] font-medium text-center text-qblack'>
+                  <div className="flex sm:justify-center justify-start">
+                    <span className="text-[30px] font-medium text-center text-qblack">
                       {sellerInfo.seller.shop_name}
                     </span>
                   </div>
@@ -502,8 +503,8 @@ export default function AllProductPage({ response, sellerInfo }) {
             )}
 
             {/*<BreadcrumbCom />*/}
-            <div className='w-full xl:flex xl:space-x-[30px]'>
-              <div className='xl:w-[270px]'>
+            <div className="w-full xl:flex xl:space-x-[30px]">
+              <div className="xl:w-[270px]">
                 <ProductsFilter
                   filterToggle={filterToggle}
                   filterToggleHandler={() => setToggle(!filterToggle)}
@@ -530,7 +531,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                     )
                   }
                   volumeHandler={(value) => volumeHandler(value)}
-                  className='mb-[30px]'
+                  className="mb-[30px]"
                   variantsFilter={variantsFilter}
                 />
                 {response.data &&
@@ -546,22 +547,22 @@ export default function AllProductPage({ response, sellerInfo }) {
                         backgroundSize: `cover`,
                         backgroundRepeat: `no-repeat`,
                       }}
-                      className='w-full hidden py-[35px] pl-[40px] group xl:block h-[295px] relative rounded'
+                      className="w-full hidden py-[35px] pl-[40px] group xl:block h-[295px] relative rounded"
                     >
-                      <div className='flex flex-col justify-between w-full h-full'>
+                      <div className="flex flex-col justify-between w-full h-full">
                         <div>
-                          <div className='mb-[10px]'>
-                            <span className='text-qblack uppercase text-xs font-semibold'>
+                          <div className="mb-[10px]">
+                            <span className="text-qblack uppercase text-xs font-semibold">
                               {response.data.shopPageSidebarBanner.title_one}
                             </span>
                           </div>
-                          <div className='mb-[30px]'>
-                            <h1 className='w-[162px] text-[24px] leading-[30px] text-qblack font-semibold'>
+                          <div className="mb-[30px]">
+                            <h1 className="w-[162px] text-[24px] leading-[30px] text-qblack font-semibold">
                               {response.data.shopPageSidebarBanner.title_two}
                             </h1>
                           </div>
                         </div>
-                        <div className='w-[90px]'>
+                        <div className="w-[90px]">
                           <Link
                             href={{
                               pathname: "/products",
@@ -573,39 +574,39 @@ export default function AllProductPage({ response, sellerInfo }) {
                             }}
                             passHref
                           >
-                            <a rel='noopener noreferrer'>
-                              <div className='cursor-pointer w-full relative  '>
-                                <div className='inline-flex  space-x-1.5 items-center relative z-20'>
-                                  <span className='text-sm text-qblack font-medium leading-[30px]'>
+                            <a rel="noopener noreferrer">
+                              <div className="cursor-pointer w-full relative  ">
+                                <div className="inline-flex  space-x-1.5 items-center relative z-20">
+                                  <span className="text-sm text-qblack font-medium leading-[30px]">
                                     {langCntnt && langCntnt.Shop_Now}
                                   </span>
-                                  <span className='leading-[30px]'>
+                                  <span className="leading-[30px]">
                                     <svg
-                                      width='7'
-                                      height='11'
-                                      viewBox='0 0 7 11'
-                                      fill='none'
+                                      width="7"
+                                      height="11"
+                                      viewBox="0 0 7 11"
+                                      fill="none"
                                       className={`fill-current`}
-                                      xmlns='http://www.w3.org/2000/svg'
+                                      xmlns="http://www.w3.org/2000/svg"
                                     >
                                       <rect
-                                        x='2.08984'
-                                        y='0.636719'
-                                        width='6.94219'
-                                        height='1.54271'
-                                        transform='rotate(45 2.08984 0.636719)'
+                                        x="2.08984"
+                                        y="0.636719"
+                                        width="6.94219"
+                                        height="1.54271"
+                                        transform="rotate(45 2.08984 0.636719)"
                                       />
                                       <rect
-                                        x='7'
-                                        y='5.54492'
-                                        width='6.94219'
-                                        height='1.54271'
-                                        transform='rotate(135 7 5.54492)'
+                                        x="7"
+                                        y="5.54492"
+                                        width="6.94219"
+                                        height="1.54271"
+                                        transform="rotate(135 7 5.54492)"
                                       />
                                     </svg>
                                   </span>
                                 </div>
-                                <div className='w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[2px] bg-qyellow absolute left-0 bottom-0 z-10'></div>
+                                <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[2px] bg-qyellow absolute left-0 bottom-0 z-10"></div>
                               </div>
                             </a>
                           </Link>
@@ -615,16 +616,16 @@ export default function AllProductPage({ response, sellerInfo }) {
                   )}
               </div>
 
-              <div className='flex-1'>
+              <div className="flex-1">
                 {response.data && response.data.products.data.length > 0 ? (
-                  <div className='w-full'>
+                  <div className="w-full">
                     <div
                       style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
-                      className='products-sorting w-full bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mb-[40px]'
+                      className="products-sorting w-full bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mb-[40px]"
                     >
                       <div>
-                        <p className='font-400 text-[14px] text-qgray capitalize'>
-                          <span className=''>
+                        <p className="font-400 text-[14px] text-qgray capitalize">
+                          <span className="">
                             {" "}
                             {/* {langCntnt && langCntnt.Showing} */}
                           </span>{" "}
@@ -635,13 +636,13 @@ export default function AllProductPage({ response, sellerInfo }) {
                           {langCntnt && langCntnt.results}
                         </p>
                       </div>
-                      <div className='flex space-x-3 items-center'>
-                        <span className='font-bold  text-qblack text-[13px]'>
+                      <div className="flex space-x-3 items-center">
+                        <span className="font-bold  text-qblack text-[13px]">
                           {langCntnt && langCntnt.View_by} :
                         </span>
                         <button
                           onClick={() => setCardViewStyle("col")}
-                          type='button'
+                          type="button"
                           className={`hover:text-qpurple w-6 h-6 ${
                             cardViewStyle === "col"
                               ? "text-qpurple"
@@ -649,17 +650,17 @@ export default function AllProductPage({ response, sellerInfo }) {
                           }`}
                         >
                           <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            viewBox='0 0 24 24'
-                            className='fill-current'
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className="fill-current"
                           >
-                            <path fill='none' d='M0 0h24v24H0z' />
-                            <path d='M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z' />
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" />
                           </svg>
                         </button>
                         <button
                           onClick={() => setCardViewStyle("row")}
-                          type='button'
+                          type="button"
                           className={`hover:text-qpurple w-6 h-6 ${
                             cardViewStyle === "row"
                               ? "text-qpurple"
@@ -667,38 +668,38 @@ export default function AllProductPage({ response, sellerInfo }) {
                           }`}
                         >
                           <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            viewBox='0 0 24 24'
-                            className='fill-current'
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className="fill-current"
                           >
-                            <path fill='none' d='M0 0h24v24H0z' />
-                            <path d='M19 11V5H5v6h14zm0 2H5v6h14v-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z' />
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M19 11V5H5v6h14zm0 2H5v6h14v-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" />
                           </svg>
                         </button>
                       </div>
                       <button
                         onClick={() => setToggle(!filterToggle)}
-                        type='button'
-                        className='w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qpurple text-qpurple'
+                        type="button"
+                        className="w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qpurple text-qpurple"
                       >
                         <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          className='h-6 w-6'
-                          fill='none'
-                          viewBox='0 0 24 24'
-                          stroke='currentColor'
-                          strokeWidth='2'
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
                         >
                           <path
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z'
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
                           />
                         </svg>
                       </button>
                     </div>
                     {products && cardViewStyle === "col" && (
-                      <div className='grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]'>
+                      <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
                         <DataIteration
                           datas={products && products}
                           startLength={0}
@@ -709,7 +710,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                           }
                         >
                           {({ datas }) => (
-                            <div data-aos='fade-up' key={datas.id}>
+                            <div data-aos="fade-up" key={datas.id}>
                               <ProductCardStyleOne datas={datas} />
                             </div>
                           )}
@@ -717,7 +718,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                       </div>
                     )}
                     {products && cardViewStyle === "row" && (
-                      <div className='grid lg:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]'>
+                      <div className="grid lg:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
                         <DataIteration
                           datas={products && products}
                           startLength={0}
@@ -728,7 +729,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                           }
                         >
                           {({ datas }) => (
-                            <div data-aos='fade-up' key={datas.id}>
+                            <div data-aos="fade-up" key={datas.id}>
                               <ProductCardRowStyleOne datas={datas} />
                             </div>
                           )}
@@ -739,7 +740,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                       response.data.shopPageCenterBanner &&
                       parseInt(response.data.shopPageCenterBanner.status) ===
                         1 && (
-                        <div className='w-full relative text-qblack mb-[40px]'>
+                        <div className="w-full relative text-qblack mb-[40px]">
                           <OneColumnAdsTwo
                             data={response.data.shopPageCenterBanner}
                           />
@@ -747,14 +748,14 @@ export default function AllProductPage({ response, sellerInfo }) {
                       )}
 
                     {products && cardViewStyle === "col" && (
-                      <div className='grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5'>
+                      <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                         <DataIteration
                           datas={products && products}
                           startLength={6}
                           endLength={products && products.length}
                         >
                           {({ datas }) => (
-                            <div data-aos='fade-up' key={datas.id}>
+                            <div data-aos="fade-up" key={datas.id}>
                               <ProductCardStyleOne datas={datas} />
                             </div>
                           )}
@@ -762,51 +763,53 @@ export default function AllProductPage({ response, sellerInfo }) {
                       </div>
                     )}
                     {products && cardViewStyle === "row" && (
-                      <div className='grid lg:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5'>
+                      <div className="grid lg:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                         <DataIteration
                           datas={products && products}
                           startLength={6}
                           endLength={products && products.length}
                         >
                           {({ datas }) => (
-                            <div data-aos='fade-up' key={datas.id}>
+                            <div data-aos="fade-up" key={datas.id}>
                               <ProductCardRowStyleOne datas={datas} />
                             </div>
                           )}
                         </DataIteration>
                       </div>
                     )}
-                    {nxtPage && nxtPage !== "null" && (
-                      <div className='flex justify-center'>
-                        <button
-                          onClick={nextPageHandler}
-                          type='button'
-                          className='w-[180px] h-[54px] bg-qpurple rounded mt-10'
-                        >
-                          <div className='flex justify-center w-full h-full items-center group rounded relative transition-all duration-300 ease-in-out overflow-hidden cursor-pointer'>
-                            <div className='flex items-center transition-all duration-300 ease-in-out relative z-10  text-white'>
-                              <span className='text-sm font-600 tracking-wide leading-7 mr-2'>
-                                {langCntnt && langCntnt.Show_more}...
-                              </span>
-                              {loading && (
-                                <span
-                                  className='w-5 '
-                                  style={{ transform: "scale(0.3)" }}
-                                >
-                                  <LoaderStyleOne />
+                    {/* <div>
+                      {nxtPage && nxtPage !== "null" && (
+                        <div className="flex justify-center">
+                          <button
+                            onClick={nextPageHandler}
+                            type="button"
+                            className="w-[180px] h-[54px] bg-qpurple rounded mt-10"
+                          >
+                            <div className="flex justify-center w-full h-full items-center group rounded relative transition-all duration-300 ease-in-out overflow-hidden cursor-pointer">
+                              <div className="flex items-center transition-all duration-300 ease-in-out relative z-10  text-white">
+                                <span className="text-sm font-600 tracking-wide leading-7 mr-2">
+                                  {langCntnt && langCntnt.Show_more}...
                                 </span>
-                              )}
+                                {loading && (
+                                  <span
+                                    className="w-5 "
+                                    style={{ transform: "scale(0.3)" }}
+                                  >
+                                    <LoaderStyleOne />
+                                  </span>
+                                )}
+                              </div>
+                              <div
+                                style={{
+                                  transition: `transform 0.25s ease-in-out`,
+                                }}
+                                className="w-full h-full bg-black absolute top-0 left-0 right-0 bottom-0 transform scale-x-0 group-hover:scale-x-100 origin-[center_left] group-hover:origin-[center_right]"
+                              ></div>
                             </div>
-                            <div
-                              style={{
-                                transition: `transform 0.25s ease-in-out`,
-                              }}
-                              className='w-full h-full bg-black absolute top-0 left-0 right-0 bottom-0 transform scale-x-0 group-hover:scale-x-100 origin-[center_left] group-hover:origin-[center_right]'
-                            ></div>
-                          </div>
-                        </button>
-                      </div>
-                    )}
+                          </button>
+                        </div>
+                      )}
+                    </div> */}
                   </div>
                 ) : (
                   // <div className={"mt-5 flex justify-center"}>
@@ -814,48 +817,48 @@ export default function AllProductPage({ response, sellerInfo }) {
                   //     Products not available
                   //   </h1>
                   // </div>
-                  <div className='mt-5'>
+                  <div className="mt-5">
                     {router.route === "/search" ? (
                       <>
-                        <h2 className='text-2xl font-bold text-tblack mb-2'>
+                        <h2 className="text-2xl font-bold text-tblack mb-2">
                           Search Results:
                         </h2>
                         {!categoryExistInRoute &&
                         relatedProducts.length === 0 ? (
                           <>
-                            <p className='text-lg text-qgray  mb-[200px]'>
+                            <p className="text-lg text-qgray  mb-[200px]">
                               Your search -{" "}
-                              <span className='font-bold text-qpurple text-xl'>
+                              <span className="font-bold text-qpurple text-xl">
                                 "{router.query.search}"
                               </span>{" "}
                               - did not match any Products.
                             </p>
-                            <div className='flex justify-center'>
-                              <div className='w-[200px] h-[200px] relative'>
+                            <div className="flex justify-center">
+                              <div className="w-[200px] h-[200px] relative">
                                 <Image
-                                  layout='fill'
-                                  objectFit='scale-down'
-                                  src='/assets/images/search-not-found.png'
-                                  alt='blog'
+                                  layout="fill"
+                                  objectFit="scale-down"
+                                  src="/assets/images/search-not-found.png"
+                                  alt="blog"
                                 />
                               </div>
                             </div>
                           </>
                         ) : (
                           <>
-                            <p className='text-lg text-qgray mb-10'>
+                            <p className="text-lg text-qgray mb-10">
                               Your search -{" "}
-                              <span className='font-bold text-qpurple text-xl'>
+                              <span className="font-bold text-qpurple text-xl">
                                 "{router.query.search}"
                               </span>{" "}
                               - did not match any Products. But still you can
                               choose products from same category.
                             </p>
-                            <div className='suggested'>
-                              <h2 className='text-lg font-medium text-qgray mb-6'>
+                            <div className="suggested">
+                              <h2 className="text-lg font-medium text-qgray mb-6">
                                 Suggested Products:
                               </h2>
-                              <div className='grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]'>
+                              <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
                                 <DataIteration
                                   datas={relatedProducts && relatedProducts}
                                   startLength={0}
@@ -864,7 +867,7 @@ export default function AllProductPage({ response, sellerInfo }) {
                                   }
                                 >
                                   {({ datas }) => (
-                                    <div data-aos='fade-up' key={datas.id}>
+                                    <div data-aos="fade-up" key={datas.id}>
                                       <ProductCardStyleOne datas={datas} />
                                     </div>
                                   )}
@@ -876,18 +879,18 @@ export default function AllProductPage({ response, sellerInfo }) {
                       </>
                     ) : (
                       <>
-                        <div className='flex justify-center mt-20'>
-                          <div className='w-[200px] h-[200px] relative'>
+                        <div className="flex justify-center mt-20">
+                          <div className="w-[200px] h-[200px] relative">
                             <Image
-                              layout='fill'
-                              objectFit='scale-down'
-                              src='/assets/images/search-not-found.png'
-                              alt='blog'
+                              layout="fill"
+                              objectFit="scale-down"
+                              src="/assets/images/search-not-found.png"
+                              alt="blog"
                             />
                           </div>
                         </div>
-                        <div className='flex justify-center items-center mt-10'>
-                          <p className='text-2xl font-bold text-tblack'>
+                        <div className="flex justify-center items-center mt-10">
+                          <p className="text-2xl font-bold text-tblack">
                             Product Not Found
                           </p>
                         </div>

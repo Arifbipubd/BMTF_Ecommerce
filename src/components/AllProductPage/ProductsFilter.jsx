@@ -1,8 +1,8 @@
 import Checkbox from "../Helpers/Checkbox";
 import { useEffect, useState } from "react";
 import languageModel from "../../../utils/languageModel";
-import RangeSlider from 'react-range-slider-input';
-import 'react-range-slider-input/dist/style.css';
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
 import settings from "../../../utils/settings";
 export default function ProductsFilter({
   categories,
@@ -83,15 +83,21 @@ export default function ProductsFilter({
                 {/*  value={volume}*/}
                 {/*  onChange={volumeHandler}*/}
                 {/*/>*/}
-                <RangeSlider value={volume} onInput={volumeHandler} min={priceMin} max={priceMax} />
+                <RangeSlider
+                  value={volume}
+                  onInput={volumeHandler}
+                  min={priceMin}
+                  max={priceMax}
+                />
               </div>
               <p className="text-xs text-qblack font-400">
-                {langCntnt && langCntnt.Price}: {currency_icon + volume[0]} - {currency_icon + volume[1]}
+                {langCntnt && langCntnt.Price}: {currency_icon + volume[0]} -{" "}
+                {currency_icon + volume[1]}
               </p>
             </>
           )}
         </div>
-        <div className="filter-subject-item pb-10 border-b border-qpurplelow/10 mt-10">
+        {/* <div className="filter-subject-item pb-10 border-b border-qpurplelow/10 mt-10">
           <div className="subject-title mb-[30px]">
             <h1 className="text-qblack text-base font-500 capitalize">
               {langCntnt && langCntnt.Brands}
@@ -127,49 +133,50 @@ export default function ProductsFilter({
                 ))}
             </ul>
           </div>
-        </div>
-        {variantsFilter &&
-          variantsFilter.length &&
-          variantsFilter.map((variant, i) => (
-            <div key={i} className="filter-subject-item pb-10 mt-10">
-              <div className="subject-title mb-[30px]">
-                <h1 className="text-qblack text-base font-500 capitalize">
-                  {variant.name}
-                </h1>
-              </div>
-              <div className="filter-items">
-                <ul>
-                  {variant &&
-                    variant.active_variant_items.length > 0 &&
-                    variant.active_variant_items.map((varientItem, i) => (
-                      <li
-                        key={i}
-                        className="item flex justify-between items-center mb-5"
-                      >
-                        <div className="flex space-x-[14px] items-center">
-                          <div>
-                            <Checkbox
-                              className="accent-qpurple"
-                              id={varientItem.name}
-                              name={varientItem.name}
-                              handleChange={(e) => varientHandler(e)}
-                              checked={varientItem.selected}
-                            />
+        </div> */}
+        {/* <div>
+          {variantsFilter &&
+            variantsFilter.length &&
+            variantsFilter.map((variant, i) => (
+              <div key={i} className="filter-subject-item pb-10 mt-10">
+                <div className="subject-title mb-[30px]">
+                  <h1 className="text-qblack text-base font-500 capitalize">
+                    {variant.name}
+                  </h1>
+                </div>
+                <div className="filter-items">
+                  <ul>
+                    {variant &&
+                      variant.active_variant_items.length > 0 &&
+                      variant.active_variant_items.map((varientItem, i) => (
+                        <li
+                          key={i}
+                          className="item flex justify-between items-center mb-5"
+                        >
+                          <div className="flex space-x-[14px] items-center">
+                            <div>
+                              <Checkbox
+                                className="accent-qpurple"
+                                id={varientItem.name}
+                                name={varientItem.name}
+                                handleChange={(e) => varientHandler(e)}
+                                checked={varientItem.selected}
+                              />
+                            </div>
+                            <label
+                              htmlFor={varientItem.name}
+                              className="text-sm font-black font-400 capitalize"
+                            >
+                              {varientItem.name}
+                            </label>
                           </div>
-                          <label
-                            htmlFor={varientItem.name}
-                            className="text-sm font-black font-400 capitalize"
-                          >
-                            {varientItem.name}
-                          </label>
-                        </div>
-                      </li>
-                    ))}
-                </ul>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
-
+            ))}
+        </div> */}
         <button
           onClick={filterToggleHandler}
           type="button"
