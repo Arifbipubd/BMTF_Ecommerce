@@ -240,7 +240,7 @@ export default function AllProductPage({ response, sellerInfo }) {
     setVolume(volumeArr);
   }, [response.data]);
   useEffect(() => {
-    console.log(variantsFilter, categoriesFilter)
+    console.log(variantsFilter, categoriesFilter);
     if (response.data) {
       const min =
         response.data &&
@@ -321,7 +321,7 @@ export default function AllProductPage({ response, sellerInfo }) {
     selectedVarientFilterItem,
     selectedCategoryFilterItem,
     selectedBrandsFilterItem,
-    volume
+    volume,
   ]);
   const nextPageHandler = async () => {
     setLoading(true);

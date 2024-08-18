@@ -6,7 +6,7 @@ import { fetchCompareProducts } from "../../store/compareProduct";
 import { setupAction } from "../../store/websiteSetup";
 import { fetchWishlist } from "../../store/wishlistData";
 import languageModel from "../../../utils/languageModel";
-import TawkTo from "tawkto-react";
+import TawkToWidget from "./TawkTo";
 import LoginContext from "../Contexts/LoginContexts";
 import Script from "next/script";
 import Consent from "../Helpers/Consent";
@@ -18,6 +18,7 @@ import LoginWidget from "../Auth/Login/LoginWidget";
 import SignupWidget from "../Auth/Signup/SignupWidget";
 import VerifyWidget from "../Auth/Signup/VerifyWidget";
 import hexToRgb from "../../../utils/hexToRgb";
+import Head from "next/head";
 
 function DefaultLayout({ children }) {
   const router = useRouter();
@@ -66,18 +67,24 @@ function DefaultLayout({ children }) {
     !websiteSetup ? apiFetch() : false;
     dispatch(fetchCart());
     dispatch(fetchCompareProducts());
-    const themeColor= JSON.parse(localStorage.getItem('settings'))
-    if(themeColor){
-      const root = document.querySelector(':root');
-      if(themeColor.theme_one && themeColor.theme_two){
-        root.style.setProperty('--primary-color', `${hexToRgb(themeColor?.theme_one)}`);
-        root.style.setProperty('--secondary-color', `${hexToRgb(themeColor?.theme_two)}`);
+    const themeColor = JSON.parse(localStorage.getItem("settings"));
+    if (themeColor) {
+      const root = document.querySelector(":root");
+      if (themeColor.theme_one && themeColor.theme_two) {
+        root.style.setProperty(
+          "--primary-color",
+          `${hexToRgb(themeColor?.theme_one)}`
+        );
+        root.style.setProperty(
+          "--secondary-color",
+          `${hexToRgb(themeColor?.theme_two)}`
+        );
       }
     }
     if (languageModel()) {
       setLoad(true);
     }
-  },[websiteSetup, apiFetch, dispatch]);
+  }, [websiteSetup, apiFetch, dispatch]);
   useEffect(() => {
     if (websiteSetup) {
       let current = new Date();
@@ -94,15 +101,18 @@ function DefaultLayout({ children }) {
     }
   }, [websiteSetup]);
 
-  useEffect(() => {
-    if (twkData) {
-      let tawk = new TawkTo(`${twkData.widgetId}`, `${twkData.propertyId}`);
+  // useEffect(() => {
+  //   const tawkScript = document.createElement("script");
+  //   tawkScript.async = true;
+  //   tawkScript.src = `https://embed.tawk.to/66b712170cca4f8a7a74284d/1i4thtblv`;
+  //   tawkScript.charset = "UTF-8";
+  //   tawkScript.setAttribute("crossorigin", "*");
+  //   document.body.appendChild(tawkScript);
 
-      tawk.onStatusChange((status) => {
-        console.log(status);
-      });
-    }
-  }, [twkData]);
+  //   tawkScript.onload = () => {
+  //     console.log("Tawk.to script loaded.");
+  //   };
+  // }, []);
   useEffect(() => {
     if (fbPixexl) {
       import("react-facebook-pixel")
@@ -214,7 +224,7 @@ function DefaultLayout({ children }) {
           </Script>
         </>
       )}
-
+      <TawkToWidget />
       <div>
         {load && (
           <>
