@@ -22,7 +22,7 @@ export default function Home({ homepageData }) {
   const topCategoryImage =
     "/assets/images/banner images bmtf ecommerce/healthcare.jpg";
   const leatherCategoryImage =
-    "/assets/images/banner images bmtf ecommerce/leather.jpg";
+    "/assets/images/banner images bmtf ecommerce/shoe.jpg";
   const furnitureCategoryImage =
     "/assets/images/banner images bmtf ecommerce/furniture.jpg";
   const [homepage] = useState(homepageData);
