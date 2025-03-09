@@ -68,6 +68,7 @@ function CheakoutPage() {
   const [couponCode, setCouponCode] = useState(null);
   const [bankInfo, setBankInfo] = useState(null);
   const [discountCoupon, setDiscountCoupon] = useState(0);
+  const [agreeBtnIsChecked, setAgreeBtnIsChecked] = useState(false);
 
   const handlePhoneNumberChange = (e) => {
     const inputNumber = e.target.value.trim();
@@ -2496,20 +2497,12 @@ function CheakoutPage() {
                       </div>
                     </div>
                   )}
-                  <button
-                    type='button'
-                    onClick={placeOrderHandler}
-                    className='w-full'
-                  >
-                    <div className='w-full h-[50px] flex justify-center items-center'>
-                      <div className='transition-common bg-qpurple hover:bg-qpurplelow/10 hover:text-qpurple border border-transparent hover:border-qpurple text-white w-full h-full flex justify-center items-center rounded'>
-                        <span className='text-sm font-semibold'>
-                          {langCntnt && langCntnt.Place_Order_Now}
-                        </span>
-                      </div>
+                  <div className=' my-3 '>
+                    <div className=" flex gap-2 ">
+                    <div>
+                      <input type="checkbox" checked={agreeBtnIsChecked} onChange={() => setAgreeBtnIsChecked(!agreeBtnIsChecked)} />
                     </div>
-                  </button>
-                  <div className=' mt-3 '>
+                    <div>
                     <span>
                       By placing order, you agree with our{" "}
                       <span className=' text-blue-500 fw-bold '>
@@ -2535,7 +2528,25 @@ function CheakoutPage() {
                       </span>
                       .
                     </span>
+                    </div>
+                    </div>
                   </div>
+                  <button
+                    type='button'
+                    onClick={placeOrderHandler}
+                    disabled={!agreeBtnIsChecked}
+                    className='w-full'
+                  >
+                    <div className='w-full h-[50px] flex justify-center items-center'>
+                      <div className={`transition-common w-full h-full flex justify-center items-center rounded border border-transparent 
+      ${agreeBtnIsChecked ? "bg-qpurple hover:bg-qpurplelow/10 text-white hover:text-qpurple hover:border-qpurple" 
+                  : "bg-gray-500 text-white"}`}>
+                        <span className='text-sm font-semibold'>
+                          {langCntnt && langCntnt.Place_Order_Now}
+                        </span>
+                      </div>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>

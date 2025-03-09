@@ -74,6 +74,7 @@ export default function Footer({ settings, contact }) {
   });
 
   return (
+    <>
     <footer
       style={{
         backgroundImage: `url(${
@@ -363,7 +364,12 @@ export default function Footer({ settings, contact }) {
             ""
           )}
         </div>
+
       </div>
     </footer>
+    <div className=" w-full bg-black">
+        <Image src="/assets/images/PaymentBann.png" layout="responsive" width={1000} height={100} />
+    </div>
+  </>
   );
 }
