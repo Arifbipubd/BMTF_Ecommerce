@@ -23,6 +23,6 @@ module.exports = pwa==='1'?nextConfigWithPwa:nextConfig ;
 
 module.exports = {
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
 }
