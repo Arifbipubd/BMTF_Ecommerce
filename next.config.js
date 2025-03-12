@@ -2,27 +2,21 @@
 const runtimeCaching = require("next-pwa/cache");
 const withPWA = require('next-pwa');
 const { hostname } = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`);
-
-const nextConfig = {
+const nextConfig={
   reactStrictMode: true,
   swcMinify: false,
   images: {
-    domains: [`${hostname}`],
-    unoptimized: true, // Add the unoptimized setting here instead
+    domains: [`${hostname}`]
   },
 }
-
 const pwa = process.env.NEXT_PWA_STATUS;
-
-// Apply PWA if enabled
-const finalConfig = pwa === '1' 
-  ? withPWA({
-      dest: "public",
-      register: true,
-      skipWaiting: true,
-      runtimeCaching,
-      disable: process.env.NODE_ENV === "development",
-    })(nextConfig)
-  : nextConfig;
-
-module.exports = finalConfig;
+const nextConfigWithPwa = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  runtimeCaching,
+  disable: process.env.NODE_ENV === "development",
+}) (
+    nextConfig
+);
+module.exports = pwa==='1'?nextConfigWithPwa:nextConfig ;
